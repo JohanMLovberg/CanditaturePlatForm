@@ -18,16 +18,16 @@ export interface ElectionsFormData {
 }
 
 export interface SubmitElectionsFormData {
-	ElectionBody: string;
-	ElectionPost: string;
-	ElectionRegionalGroup: string;
-	ElectionStatus: string;
+	Body: string;
+	Post: string;
+	RegionalGroup: string;
+	Status: string;
 	ElectionDate: string;
-	ElectionDateIsTentative: boolean;
-	ElectionAnnouncementDeadline: string;
-	ElectionSeats: number;
-	IsTentativeSeats: boolean;
-	IsEligibleForVoteSwaps: boolean;
+	TentativeDate: boolean;
+	AnnouncementDeadline: string;
+	Seats: number;
+	TentativeSeatCount: boolean;
+	EligibleForVoteSwaps: boolean;
 	DanishVotesInElection: number;
 	ResponsibleLineAuthorities: string | string[];
 }
