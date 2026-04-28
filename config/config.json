@@ -1,0 +1,25 @@
+{
+  "entries": [
+    {
+      "entry": "./lib/webparts/candidatures/CandidaturesWebPart.js",
+      "manifest": "./src/webparts/candidatures/CandidaturesWebPart.manifest.json",
+      "outputPath": "./dist/candidatures-web-part.js"
+    },
+    {
+      "entry": "./lib/webparts/representations/RepresentationsWebPart.js",
+      "manifest": "./src/webparts/representations/RepresentationsWebPart.manifest.json",
+      "outputPath": "./dist/representations-web-part.js"
+    },
+    {
+      "entry": "./lib/webparts/electionBodies/ElectionBodiesWebPart.js",
+      "manifest": "./src/webparts/electionBodies/ElectionBodiesWebPart.manifest.json",
+      "outputPath": "./dist/election-bodies-web-part.js"
+    },
+    {
+      "entry": "./lib/webparts/elections/ElectionsWebPart.js",
+      "manifest": "./src/webparts/elections/ElectionsWebPart.manifest.json",
+      "outputPath": "./dist/elections-web-part.js"
+    }
+  ],
+  "externals": {}
+}

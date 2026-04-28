@@ -1,0 +1,27 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "ac1b9202-3a91-4ec4-9845-b2065332206a",
+  "alias": "RepresentationsFormWebPart",
+  "componentType": "WebPart",
+  "version": "*",
+  "manifestVersion": 2,
+  "requiresCustomScript": false,
+  "preconfiguredEntries": [
+    {
+      "groupId": "5c03119e-3074-46fd-976b-c60198311f70",
+      "group": {
+        "default": "Other"
+      },
+      "title": {
+        "default": "RepresentationsForm"
+      },
+      "description": {
+        "default": "RepresentationsForm description"
+      },
+      "officeFabricIconFontName": "Page",
+      "properties": {
+        "description": "RepresentationsForm"
+      }
+    }
+  ]
+}

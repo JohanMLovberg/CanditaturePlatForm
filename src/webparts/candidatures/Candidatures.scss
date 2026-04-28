@@ -1,0 +1,61 @@
+.formWrapper {
+  position: relative;
+}
+
+.formContainer {
+  border: 1px solid #c8c8c8;
+  max-width: 900px;
+  background-color: #ffffff;
+  text-align: start;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border-bottom: 1px solid #e1e1e1;
+  padding: 8px;
+  position: relative;
+  padding-bottom: 50px;
+}
+
+.title {
+  padding: 10px;
+  font-size: 36px;
+  font-weight: 600;
+  margin-left: 50px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+}
+
+.buttonRow {
+  display: flex;
+  gap: 50px;
+  padding-left: 250px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.buttonRow button {
+  padding: 3px 40px;
+  border-radius: 5%;
+  height: 40px;
+  cursor: pointer;
+}
+
+.spinnerOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

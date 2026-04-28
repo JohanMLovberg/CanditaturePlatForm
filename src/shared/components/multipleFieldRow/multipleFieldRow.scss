@@ -1,0 +1,53 @@
+.formRow {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e1e1e1;
+  padding: 8px;
+  background-color: #f7f7f7;
+}
+
+.formRow:last-child {
+  border-bottom: none;
+}
+
+.formLabel {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.formControl {
+  flex: 2;
+}
+
+.formControl input[type="text"],
+.formControl input[type="number"],
+.formControl select {
+  width: 100%;
+  padding: 4px 6px;
+  box-sizing: border-box;
+}
+
+.formControl label {
+  font-weight: normal;
+  line-height: 1.3rem;
+  float: right;
+}
+
+.error {
+  color: #a80000;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.required {
+  color: #fe3a4f;
+  padding-right: 4px;
+  padding-left: 4px;
+}
+
+.multipleField {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}

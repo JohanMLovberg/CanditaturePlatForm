@@ -1,0 +1,13 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "candidatures-spfx-client-side-solution",
+    "id": "e76ae902-94eb-4cdc-a7b9-d92ca97db4ef",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true
+  },
+  "paths": {
+    "zippedPackage": "solution/candidatures-spfx.sppkg"
+  }
+}

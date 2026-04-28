@@ -1,0 +1,53 @@
+.hoverCard {
+  display: none;
+}
+
+.suggestionItemWrapper:hover .hoverCard{
+  display: block;
+  position: fixed;
+  left: 80%;
+  background: #f7f7f7;
+  color: #000000;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  padding: 20px;
+  z-index: 1000;
+  pointer-events: none;
+  text-align: start;
+  .hoverTop {
+    .hoverName {
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+    .hoverTitle {
+      font-size: 14px;
+      color: #000000;
+    }
+  }
+
+  .hoverDivider {
+    height: 1px;
+    background-color: rgba(129, 122, 122, 0.9);
+    margin: 6px 0;
+  }
+
+  .hoverInfo {
+    .hoverRow {
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: flex-start;
+      padding: 2px;
+
+      .hoverLabel {
+        font-weight: 600;
+        color: #000000;
+        padding-right: 10px;
+      }
+
+      .hoverValue {
+        color: #000000;
+      }
+    }
+  }
+}
