@@ -88,7 +88,7 @@ export default class ElectionsFormView extends React.Component<IElectionViewProp
 						secondLabel={'Tentative Date'}
 						firstElement={
 							<DateField
-								name='electionDate'
+								name='ElectionDate'
 								value={this.props.form.ElectionDate}
 								onChange={this.props.onInputChange}
 							/>

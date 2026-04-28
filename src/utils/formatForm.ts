@@ -8,12 +8,14 @@ export function formattingCandidaturesForm(form: CandidaturesFormData): SubmitCa
   return {
     Election: form.Election,
     Country: form.Country,
-    PersonSpecificCandidature: form.PersonSpecificCandidature,
+    PersonSpecificCandidature: form.PersonSpecificCandidature ? "Yes" : "No",
+    Title: form.Title,
+    FullName: form.FullName,
     CandidatureStatus: form.CandidatureStatus,
     ClearingHouseCategory: form.ClearingHouseCategory,
-    AnnouncementDate: formatDateTimeForForm(form.AnnouncementDate),
-    VotesRecived: form.VotesRecived,
-    CandidatureNotes: form.CandidatureNotes
+    AnnouncementDate: formatDateTimeForForm(form.AnnouncementDate) as string,
+    VotesReceived: form.VotesReceived ? Number(form.VotesReceived) : 0,
+    ArchiveId: form.ArchiveId
   };
 }
 

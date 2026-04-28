@@ -12,11 +12,13 @@ export const mockCandidaturesFormData: CandidaturesFormData = {
     Title: "Afghanistan"
   },
   PersonSpecificCandidature: true,
+  Title: "This is a test title",
+  FullName: "This is a test full name",
   CandidatureStatus: "Announced",
   ClearingHouseCategory: "",
   AnnouncementDate: "2026-03-12",
-  VotesRecived: "30",
-  CandidatureNotes: undefined
+  VotesReceived: "30",
+  ArchiveId: ""
 };
 
 export const mockRepresentationsFormData: RepresentationsFormData = {

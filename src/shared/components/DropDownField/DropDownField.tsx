@@ -6,6 +6,7 @@ export default function DropDownField(props: IDropDownFieldProps): JSX.Element {
     name,
     value,
     options,
+    disabled,
     className = "",
     onChange
   } = props;
@@ -16,6 +17,7 @@ export default function DropDownField(props: IDropDownFieldProps): JSX.Element {
         className={className}
         name={name}
         value={value}
+        disabled={disabled}
         onChange={(ev) =>
           onChange(ev.target.name, ev.target.value)
         }
