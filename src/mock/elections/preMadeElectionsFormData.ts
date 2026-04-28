@@ -1,16 +1,10 @@
 import { ElectionsFormData } from "../../models/ElectionsModel";
 
 export const preMadeElectionsFormDataMock: ElectionsFormData = {
-	Body: {
-		Id: 5,
-		Name: "Arms Trade Treaty"
-	},
-	Post: {
-		Id: 3,
-		Title: "Chair"
-	},
-	RegionalGroup: "AG",
-	Status: "Held",
+	Body: "cityCouncil",
+	Post: "schoolBoardMember",
+	RegionalGroup: "east",
+	Status: "completed",
 	ElectionDate: "2026-04-12",
 	TentativeDate: true,
 	AnnouncementDeadline: "2026-04-30",
