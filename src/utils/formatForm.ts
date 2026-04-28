@@ -43,16 +43,16 @@ export function formattingElectionBodiesForm(form: ElectionBodiesFormData): Subm
 
 export function formatElectionsForm(form: ElectionsFormData): SubmitElectionsFormData {
   return {
-    ElectionBody: form.ElectionBody,
-    ElectionPost: form.ElectionPost,
-    ElectionRegionalGroup: form.ElectionRegionalGroup,
-    ElectionStatus: form.ElectionStatus,
+    ElectionBody: form.Body,
+    ElectionPost: form.Post,
+    ElectionRegionalGroup: form.RegionalGroup,
+    ElectionStatus: form.Status,
     ElectionDate: form.ElectionDate,
-    ElectionDateIsTentative: form.ElectionDateIsTentative,
-    ElectionAnnouncementDeadline: form.ElectionAnnouncementDeadline,
-    ElectionSeats: form.ElectionSeats,
-    IsTentativeSeats: form.IsTentativeSeats,
-    IsEligibleForVoteSwaps: form.IsEligibleForVoteSwaps,
+    ElectionDateIsTentative: form.TentativeDate,
+    ElectionAnnouncementDeadline: form.AnnouncementDeadline,
+    ElectionSeats: form.Seats,
+    IsTentativeSeats: form.TentativeSeatCount,
+    IsEligibleForVoteSwaps: form.EligibleForVoteSwaps,
     DanishVotesInElection: form.DanishVotesInElection,
     ResponsibleLineAuthorities: form.ResponsibleLineAuthorities
   };
