@@ -46,8 +46,8 @@ export function formattingElectionBodiesForm(form: ElectionBodiesFormData): Subm
 //TODO verify what type/data we want to send o the Backend
 export function formatElectionsForm(form: ElectionsFormData): SubmitElectionsFormData {
   return {
-    BodyId: form.Body.Id,
-    PostId: form.Post.Id,
+    Body: form.Body,
+    Post: form.Post,
     RegionalGroup: form.RegionalGroup,
     Status: form.Status,
     ElectionDate: form.ElectionDate,

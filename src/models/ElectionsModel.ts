@@ -17,8 +17,8 @@ export interface ElectionsFormData {
 }
 
 export interface SubmitElectionsFormData {
-	BodyId: number;
-	PostId: number;
+	Body: string;
+	Post: string;
 	RegionalGroup: string;
 	Status: string;
 	ElectionDate: string;
