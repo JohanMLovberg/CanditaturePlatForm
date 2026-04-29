@@ -10,7 +10,9 @@ import './Candidatures.scss';
 import { CandidatureStatus, ClearingHouseCategory } from '../../utils/consts/DropDownConsts';
 import PopUpWindow from '../../shared/components/PopUpWindow/PopUpWindow';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
+import { ISharePointGroup } from '../../models/ConstsModel';
 import Row from '../../shared/components/SingleRow/SingleRow';
+import NumberInputField from '../../shared/components/NumberInputField/NumberInputField';
 
 export default class CandidaturesView extends React.Component<ICandidaturesViewProps> {
   public render(): React.ReactElement<ICandidaturesViewProps> {
@@ -29,34 +31,35 @@ export default class CandidaturesView extends React.Component<ICandidaturesViewP
             closeButton={this.props.PopUpWindowCloseButton}
           />
         )}
+
         <form onSubmit={this.props.onSubmit} className="formContainer">
           <div className="titleRow">
             <h1 className='title'>
               Candidatures
             </h1>
           </div>
+
           <Row
             label="Election"
             element={
               <DropDownField
                 name="Election"
                 value={this.props.form.Election ? String(this.props.form.Election.Id) : ""}
+                options={this.props.elections
+                  ? this.props.elections.map((election) => ({
+                    value: election.Id,
+                    label: election.Title
+                  }))
+                  : []}
                 onChange={this.props.onInputChange}
-                options={
-                  this.props.elections
-                    ? this.props.elections.map((election) => ({
-                      value: election.Id,
-                      label: election.Title
-                    }))
-                    : []
-                }
               />
             }
           />
+
           <Row
             label="Country"
-            required
             error={this.props.errors.Country}
+            required
             element={
               <DropDownField
                 name="Country"
@@ -73,6 +76,7 @@ export default class CandidaturesView extends React.Component<ICandidaturesViewP
               />
             }
           />
+
           <Row
             label='Person Specific Candidature'
             element={
@@ -83,10 +87,40 @@ export default class CandidaturesView extends React.Component<ICandidaturesViewP
               />
             }
           />
+
+          {this.props.form.PersonSpecificCandidature && (
+            <Row
+              label='Title'
+              error={this.props.errors.Title}
+              required
+              element={
+                <InputField
+                  name="Title"
+                  onChange={this.props.onInputChange}
+                  value={this.props.form.Title}
+                />
+              }
+            />
+          )}
+
+          {this.props.form.PersonSpecificCandidature && (
+            <Row
+              label='FullName'
+              error={this.props.errors.FullName}
+              required
+              element={<InputField
+                name="FullName"
+                onChange={this.props.onInputChange}
+                value={this.props.form.FullName}
+              />
+              }
+            />
+          )}
+
           <Row
-            label="Candidature Status"
-            required
+            label='Candidature Status'
             error={this.props.errors.CandidatureStatus}
+            required
             element={
               <DropDownField
                 name="CandidatureStatus"
@@ -96,19 +130,22 @@ export default class CandidaturesView extends React.Component<ICandidaturesViewP
               />
             }
           />
+
           <Row
-            label="Clearing House Category"
+            label='Clearing House Category'
             element={
               <DropDownField
                 name="ClearingHouseCategory"
                 value={this.props.form.ClearingHouseCategory ? String(this.props.form.ClearingHouseCategory) : ""}
                 onChange={this.props.onInputChange}
+                disabled={this.props.DisableClearingHouseCategory}
                 options={ClearingHouseCategory}
               />
             }
           />
+
           <Row
-            label="Announcement Date"
+            label='Announcement Date'
             error={this.props.errors.AnnouncementDate}
             element={
               <DateField
@@ -118,16 +155,31 @@ export default class CandidaturesView extends React.Component<ICandidaturesViewP
               />
             }
           />
+
           <Row
-            label={"VotesRecived"}
+            label='Votes Received'
             element={
-              <InputField
-                name={'VotesRecived'}
-                value={this.props.form.VotesRecived}
+              <NumberInputField
+                name={'VotesReceived'}
+                value={this.props.form.VotesReceived ? this.props.form.VotesReceived : NaN}
                 onChange={this.props.onInputChange}
               />
             }
           />
+
+          {this.props.ShowArchiveIdField && (
+            <Row
+              label='ArchiveId'
+              element={
+                <InputField
+                  name={'ArchiveId'}
+                  value={this.props.form.ArchiveId}
+                  onChange={this.props.onInputChange}
+                />
+              }
+            />
+          )}
+
           <div className="formRow">
             <div className="buttonRow">
               <SaveButton />

@@ -1,18 +1,18 @@
 import { IDropDownData } from "../../models/ConstsModel";
 
 export const CandidatureStatus: IDropDownData[] = [
-	{ value: "Announced", label: "Announced" },
-	{ value: "Not Announced", label: "Not Announced" },
+	{ value: "Draft", label: "Draft" },
+  { value: "Announced", label: "Announced" },
+  { value: "Elected", label: "Elected" },
+  { value: "Not elected", label: "Not elected" },
+  { value: "Withdrawn", label: "Withdrawn" },
+  { value: "Disqualified", label: "Disqualified" },
 ];
 
 export const ClearingHouseCategory: IDropDownData[] = [
-  { value: "Bank", label: "Bank" },
-  { value: "Insurance", label: "Insurance" },
-  { value: "Investment Firm", label: "Investment Firm" },
-  { value: "Broker", label: "Broker" },
-  { value: "Clearing Member", label: "Clearing Member" },
-  { value: "Custodian", label: "Custodian" },
-  { value: "Asset Manager", label: "Asset Manager" },
+  { value: "A", label: "A" },
+  { value: "B", label: "B" },
+  { value: "C", label: "C" },
 ];
 
 export const Kind: IDropDownData[] = [

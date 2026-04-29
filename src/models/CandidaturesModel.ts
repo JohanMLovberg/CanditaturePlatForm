@@ -1,6 +1,6 @@
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { APIResponse } from "./ApiModel";
-import { ICountry, IElection } from "./ConstsModel";
+import { ICountry, IElection, ISharePointGroup } from "./ConstsModel";
 
 export interface ICandidaturesFormProps {
   description: string;
@@ -12,6 +12,7 @@ export interface ICandidaturesFormState {
   errors: { [key: string]: string };
   isSubmitting: boolean;
   PopUpWindowCloseButton: boolean;
+  userGroups: ISharePointGroup[];
   apiMessage?: APIResponse;
   countries: ICountry[];
   elections: IElection[];
@@ -21,29 +22,26 @@ export interface CandidaturesFormData {
   Election: IElection;
   Country: ICountry;
   PersonSpecificCandidature: boolean;
+  Title: string;
+  FullName: string;
   CandidatureStatus: string;
   ClearingHouseCategory: string;
   AnnouncementDate: string;
-  VotesRecived: string;
-  CandidatureNotes: CandidatureNotes
+  VotesReceived: number | undefined;
+  ArchiveId: string;
 }
 
 export interface SubmitCandidaturesFormData {
   Election: IElection;
   Country: ICountry;
   PersonSpecificCandidature: boolean;
+  Title: string;
+  FullName: string;
   CandidatureStatus: string;
   ClearingHouseCategory: string;
   AnnouncementDate: string;
-  VotesRecived: string;
-  CandidatureNotes: CandidatureNotes
-}
-
-export interface CandidatureNotes {
-  Title: string;
-  NoteDate: string;
-  Modified: string;
-  ModifiedBy: string;
+  VotesReceived: number;
+  ArchiveId: string;
 }
 
 export interface ICandidaturesViewProps {
@@ -58,4 +56,6 @@ export interface ICandidaturesViewProps {
   isSubmitting: boolean;
   closePopUpWindow: () => void;
   PopUpWindowCloseButton: boolean;
+  DisableClearingHouseCategory: boolean;
+  ShowArchiveIdField: boolean;
 }

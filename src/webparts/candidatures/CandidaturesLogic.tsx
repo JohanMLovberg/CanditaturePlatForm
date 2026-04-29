@@ -1,6 +1,6 @@
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { CandidaturesFormData } from "../../models/CandidaturesModel";
-import { ICountry, IElection } from "../../models/ConstsModel";
+import { ICountry, IElection, ISharePointGroup } from "../../models/ConstsModel";
 import CandidaturesApi from "../../services/CandidaturesApi";
 import { APIResponse } from "../../models/ApiModel";
 import { formattingCandidaturesForm } from "../../utils/formatForm";
@@ -25,25 +25,22 @@ export class CandidaturesLogic {
     return {
       Election:
       {
-        Id: null,
+        Id: -1,
         Title: ""
       },
       Country:
       {
-        Id: null,
+        Id: -1,
         Title: ""
       },
       PersonSpecificCandidature: false,
+      Title: "",
+      FullName: "",
       CandidatureStatus: "",
       ClearingHouseCategory: "",
       AnnouncementDate: "",
-      VotesRecived: "",
-      CandidatureNotes: {
-        Title: "",
-        NoteDate: "",
-        Modified: "",
-        ModifiedBy: "",
-      },
+      VotesReceived: undefined,
+      ArchiveId: ""
     };
   }
 
@@ -62,27 +59,32 @@ export class CandidaturesLogic {
     if (!form.Country || !form.Country.Id) errors.Country = "Country is required";
     if (!form.CandidatureStatus) errors.CandidatureStatus = "Candidature Status is required";
 
+    if (form.PersonSpecificCandidature) {
+      if (!form.Title) errors.Title = "Title is required"
+      if (!form.FullName) errors.FullName = "FullName is required"
+    }
+
     if (form.AnnouncementDate) {
       const selectedDate = new Date(form.AnnouncementDate);
       const today = new Date();
       today.setHours(0, 0, 0, 0);
-    
+
       if (selectedDate < today) {
         errors.AnnouncementDate = "Announcement date must be today or later";
       }
     }
-    
+
     return errors;
   }
 
   public async submitForm(form: CandidaturesFormData): Promise<APIResponse> {
     const submitForm = formattingCandidaturesForm(form);
-    return this.candidaturesBaseApi.submitFormCandiatures(submitForm);
+    return this.candidaturesBaseApi.submitFormCandidatures(submitForm);
   }
 
   public async editForm(form: CandidaturesFormData, id: number): Promise<APIResponse> {
     const submitForm = formattingCandidaturesForm(form);
-    return this.candidaturesBaseApi.editFormCandiatures(submitForm, id);
+    return this.candidaturesBaseApi.editFormCandidatures(submitForm, id);
   }
 
   public async getCandidaturesForm(id?: number): Promise<CandidaturesFormData> {
@@ -95,5 +97,9 @@ export class CandidaturesLogic {
 
   public async getElection(): Promise<IElection[]> {
     return this.sharePointApi.getElectionListMock();
+  }
+
+  public async getUserGroups(email: string): Promise<ISharePointGroup[]> {
+    return this.sharePointApi.getUserGroups(email);
   }
 }

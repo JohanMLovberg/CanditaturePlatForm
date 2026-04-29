@@ -44,6 +44,7 @@ export interface IDropDownFieldProps {
   value: number | string;
   options: { value: number | string; label: string | number }[];
   className?: string;
+  disabled?: boolean;
   onChange: (name: string, value: string) => void;
 }
 

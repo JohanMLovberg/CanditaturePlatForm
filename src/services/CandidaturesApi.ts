@@ -1,12 +1,14 @@
 import BaseApi from "./BaseApi";
-import { sp} from 'sp-pnp-js';
+import { sp } from 'sp-pnp-js';
 import { CandidaturesFormData, SubmitCandidaturesFormData } from "../models/CandidaturesModel";
-import { ICountry, IElection } from "../models/ConstsModel";
+import { ICountry, IElection, ISharePointGroup } from "../models/ConstsModel";
 import { mockCountry } from "../mock/Country";
 import { mockElection } from "../mock/Election";
 import { formatDateTimeForForm } from "../utils/dateUtils";
 import { mockCandidaturesFormData } from "../mock/PreMadeFormData";
 import { APIResponse } from "../models/ApiModel";
+import { YesNoToBoolean } from "../utils/BooleanUtils";
+import { mockUserGroups } from "../mock/UserGroups";
 
 export default class CandidaturesApi extends BaseApi {
 
@@ -39,13 +41,13 @@ export default class CandidaturesApi extends BaseApi {
     );
   }
 
-  public async submitFormCandiatures(formData: SubmitCandidaturesFormData): Promise<APIResponse> {
+  public async submitFormCandidatures(formData: SubmitCandidaturesFormData): Promise<APIResponse> {
     return this.handleRequest(() =>
       this.candidaturePlatformApiClient.post("/contracts", formData)
     );
   }
 
-  public async editFormCandiatures(formData: SubmitCandidaturesFormData, id: number): Promise<APIResponse> {
+  public async editFormCandidatures(formData: SubmitCandidaturesFormData, id: number): Promise<APIResponse> {
     return this.handleRequest(() =>
       this.candidaturePlatformApiClient.put(`/contracts/${id}`, formData)
     );
@@ -53,7 +55,7 @@ export default class CandidaturesApi extends BaseApi {
 
   public async getCountryList(): Promise<ICountry[]> {
     const allLists = await sp.web.lists.select("Title", "Id").get();
-    const countryList = allLists.find(l => l.Title === "Country");
+    const countryList = allLists.find((l: ICountry) => l.Title === "Country");
     if (!countryList) return [];
 
     let items: ICountry[] = await sp.web.lists.getById(countryList.Id).items.get();
@@ -66,7 +68,7 @@ export default class CandidaturesApi extends BaseApi {
 
   public async getElectionList(): Promise<IElection[]> {
     const allLists = await sp.web.lists.select("Title", "Id").get();
-    const electionList = allLists.find(l => l.Title === "Election");
+    const electionList = allLists.find((l: IElection) => l.Title === "Election");
     if (!electionList) return [];
 
     let items: IElection[] = await sp.web.lists.getById(electionList.Id).items.get();
@@ -90,36 +92,31 @@ export default class CandidaturesApi extends BaseApi {
           "Country/Id",
           "Country/Title",
           "PersonSpecificCandidature",
-          "CandidaturesStatus/Id",
-          "CandidaturesStatus/Title",
-          "ClearingHouseCategory/Id",
-          "ClearingHouseCategory/Title",
-          "AnnouncementDate",
-          "VotesRecived",
-          "CandidatureNotes/Title",
-          "CandidatureNotes/NoteDate",
-          "CandidatureNotes/Modified",
-          "CandidatureNotes/ModifiedBy"
-        )
-        .expand(
-          "Election",
-          "Country",
-          "PersonSpecificCandidature",
+          "Title",
+          "FullName",
           "CandidaturesStatus",
           "ClearingHouseCategory",
-          "CandidatureNotes"
+          "AnnouncementDate",
+          "VotesReceived",
+          "ArchiveId"
+        )
+        .expand(
+          "Country",
+          "Election"
         )
         .get();
 
       const candidaturesForm: CandidaturesFormData = {
         Election: item.Election,
         Country: item.Country,
-        PersonSpecificCandidature: item.PersonSpecificCandidature,
+        PersonSpecificCandidature: YesNoToBoolean(item.PersonSpecificCandidature),
+        Title: item.Title,
+        FullName: item.FullName,
         CandidatureStatus: item.CandidatureStatus,
         ClearingHouseCategory: item.ClearingHouseCategory,
-        AnnouncementDate: formatDateTimeForForm(item.AnnouncementDate),
-        VotesRecived: item.VotesRecived,
-        CandidatureNotes: item.CandidatureNotes
+        AnnouncementDate: formatDateTimeForForm(item.AnnouncementDate) as string,
+        VotesReceived: item.VotesReceived,
+        ArchiveId: item.ArchiveId
       };
 
       return candidaturesForm;
@@ -131,7 +128,12 @@ export default class CandidaturesApi extends BaseApi {
 
   public async getCandidaturesFormByIdMock(id?: number): Promise<CandidaturesFormData> {
     const mockdata = await mockCandidaturesFormData;
-    mockdata.AnnouncementDate = formatDateTimeForForm(mockdata.AnnouncementDate);
+    mockdata.AnnouncementDate = formatDateTimeForForm(mockdata.AnnouncementDate) as string;
     return mockdata;
+  }
+
+  public async getUserGroups(email: string): Promise<ISharePointGroup[]> {
+    return mockUserGroups;
+    // return await sp.web.siteUsers.getByEmail(email).groups.get();
   }
 }
