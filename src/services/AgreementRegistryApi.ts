@@ -46,7 +46,6 @@ export default class AgreementRegistryBaseAPI extends BaseApi {
                 .select(
                     "AgreementType",
                     "AgreementStatus",
-                    "AgreementStatus/Title",
                     "IsCounterProposal",
                     "Candidatures/Id",
                     "Candidatures/Title",
@@ -59,7 +58,7 @@ export default class AgreementRegistryBaseAPI extends BaseApi {
                     "Expired",
                     "Description",
                     "RelatedAgreements/Id",
-                    "ProposedBy/Title",
+                    "RelatedAgreements/Title",
                 )
                 .expand(
                     "Candidatures",

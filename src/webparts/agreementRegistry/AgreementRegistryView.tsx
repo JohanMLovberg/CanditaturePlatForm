@@ -13,7 +13,6 @@ import CancelButton from '../../shared/components/CancelButton/CancelButton';
 
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
 import InputField from '../../shared/components/InputField/InputField';
-import { IAgreementRegistryType, IDropDownData } from '../../models/ConstsModel';
 import Row from '../../shared/components/SingleRow/SingleRow';
 
 export default class AgreementRegistryView extends React.Component<IAgreementRegistryViewProps, any> {
