@@ -1,10 +1,9 @@
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { APIResponse } from "./ApiModel";
-import { IDropDownData } from "./ConstsModel";
 
 export interface ElectionsFormData {
-	Body: string;
-	Post: string;
+	Body: IElectionBody;
+	Post: IElectionPost;
 	RegionalGroup: string;
 	Status: string;
 	ElectionDate: string;
@@ -14,22 +13,22 @@ export interface ElectionsFormData {
 	TentativeSeatCount: boolean;
 	EligibleForVoteSwaps: boolean;
 	DanishVotesInElection: number;
-	ResponsibleLineAuthorities: string[];
+	ResponsibleLineAuthorities: IElectionResponsibleLineAuthority[];
 }
 
 export interface SubmitElectionsFormData {
-	ElectionBody: string;
-	ElectionPost: string;
-	ElectionRegionalGroup: string;
-	ElectionStatus: string;
+	BodyId: number;
+	PostId: number;
+	RegionalGroup: string;
+	Status: string;
 	ElectionDate: string;
-	ElectionDateIsTentative: boolean;
-	ElectionAnnouncementDeadline: string;
-	ElectionSeats: number;
-	IsTentativeSeats: boolean;
-	IsEligibleForVoteSwaps: boolean;
+	TentativeDate: boolean;
+	AnnouncementDeadline: string;
+	Seats: number;
+	TentativeSeatCount: boolean;
+	EligibleForVoteSwaps: boolean;
 	DanishVotesInElection: number;
-	ResponsibleLineAuthorities: string | string[];
+	ResponsibleLineAuthorities: IElectionResponsibleLineAuthority[];
 }
 
 export interface IElectionsFormProps {
@@ -39,12 +38,9 @@ export interface IElectionsFormProps {
 
 export interface IElectionsFormState {
 	form: ElectionsFormData;
-	electionBodies: IDropDownData[];
-	electionPosts: IDropDownData[];
-	electionRegionalGroups: IDropDownData[];
-	electionStatuses: IDropDownData[];
-	electionTypes: IDropDownData[];
-	responsibleLineAuthorities: IDropDownData[];
+	electionBodies: IElectionBody[];
+	electionPosts: IElectionPost[];
+	responsibleLineAuthorities: IElectionResponsibleLineAuthority[];
 	apiMessage?: APIResponse;
 	errors: { [key: string]: string };
 	isSubmitting: boolean;
@@ -54,12 +50,9 @@ export interface IElectionsFormState {
 export interface IElectionViewProps {
 	form: ElectionsFormData;
 	apiMessage?: APIResponse;
-	electionBodies: IDropDownData[];
-	electionPosts: IDropDownData[];
-	electionRegionalGroups: IDropDownData[];
-	electionStatuses: IDropDownData[];
-	electionTypes: IDropDownData[];
-	responsibleLineAuthorities: IDropDownData[];
+	electionBodies: IElectionBody[];
+	electionPosts: IElectionPost[];
+	responsibleLineAuthorities: IElectionResponsibleLineAuthority[];
 	errors: { [key: string]: string };
 	onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 	onCancel: () => void;
