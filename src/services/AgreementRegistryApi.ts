@@ -1,6 +1,5 @@
 import { APIResponse } from "../models/ApiModel";
 import BaseApi from "./BaseApi";
-
 import {
     IAgreementRegistryPartner,
     IAgreementRegistryCandidature,
@@ -84,7 +83,6 @@ export default class AgreementRegistryBaseAPI extends BaseApi {
             return null;
         }
     }
-
 
     public async getFormMock(): Promise<AgreementRegistryFormData> {
         return preMadeMockAgreementRegistryFormData;
