@@ -13,16 +13,6 @@ export interface ISharePointGroup {
   Description: string;
 }
 
-export interface IAgreementRegistryType {
-  Id: number | null;
-  Title: string;
-}
-
-export interface IAgreementRegistryStatus {
-  Id: number | null;
-  Title: string;
-}
-
 export interface IAgreementRegistryCandidature {
   Id: number | null;
   Title: string;

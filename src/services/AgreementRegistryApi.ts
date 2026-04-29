@@ -6,8 +6,6 @@ import {
     IAgreementRegistryCandidature,
     IAgreementRegistryProposedBy,
     IAgreementRegistryRelatedAgreement,
-    IAgreementRegistryStatus,
-    IAgreementRegistryType
 } from "../models/ConstsModel";
 import { AgreementRegistryFormData, SubmitAgreementRegistryFormData } from "../models/AgreementRegistryModel";
 import { sp } from 'sp-pnp-js';
@@ -16,8 +14,6 @@ import { mockAgreementRegistryRelatedAgreement } from "../mock/agreementRegistry
 import { mockAgreementRegistryProposedBy } from "../mock/agreementRegistry/ProposedBy";
 import { mockAgreementRegistryPartner } from "../mock/agreementRegistry/Partner";
 import { mockAgreementRegistryCandidature } from "../mock/agreementRegistry/Candidature";
-import { mockAgreementRegistryStatus } from "../mock/agreementRegistry/Status";
-import { mockAgreementRegistryType } from "../mock/agreementRegistry/Type";
 import { preMadeMockAgreementRegistryFormData } from "../mock/agreementRegistry/PreMadeAgreementRegistryFormData";
 import { YesNoToBoolean } from "../utils/BooleanUtils";
 import { formatDateTimeForForm } from "../utils/dateUtils";
@@ -108,13 +104,5 @@ export default class AgreementRegistryBaseAPI extends BaseApi {
 
     public async getCandidatureMock(): Promise<IAgreementRegistryCandidature[]> {
         return mockAgreementRegistryCandidature;
-    }
-
-    public async getStatusMock(): Promise<IAgreementRegistryStatus[]> {
-        return mockAgreementRegistryStatus;
-    }
-
-    public async getTypeMock(): Promise<IAgreementRegistryType[]> {
-        return mockAgreementRegistryType;
     }
 }

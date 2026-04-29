@@ -2,8 +2,6 @@ import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { APIResponse } from "./ApiModel";
 import { IDropDownData } from "./ConstsModel";
 import { 
-    IAgreementRegistryType, 
-    IAgreementRegistryStatus,
     IAgreementRegistryCandidature,
     IAgreementRegistryPartner,
     IAgreementRegistryProposedBy,
