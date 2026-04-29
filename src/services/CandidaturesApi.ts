@@ -101,7 +101,8 @@ export default class CandidaturesApi extends BaseApi {
           "ArchiveId"
         )
         .expand(
-          "Country"
+          "Country",
+          "Election"
         )
         .get();
 

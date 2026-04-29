@@ -8,7 +8,7 @@ export function formattingCandidaturesForm(form: CandidaturesFormData): SubmitCa
   return {
     Election: form.Election,
     Country: form.Country,
-    PersonSpecificCandidature: form.PersonSpecificCandidature ? "Yes" : "No",
+    PersonSpecificCandidature: form.PersonSpecificCandidature,
     Title: form.Title,
     FullName: form.FullName,
     CandidatureStatus: form.CandidatureStatus,

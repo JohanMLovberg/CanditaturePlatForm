@@ -39,7 +39,7 @@ export class CandidaturesLogic {
       CandidatureStatus: "",
       ClearingHouseCategory: "",
       AnnouncementDate: "",
-      VotesReceived: "",
+      VotesReceived: undefined,
       ArchiveId: ""
     };
   }

@@ -12,26 +12,10 @@ import PopUpWindow from '../../shared/components/PopUpWindow/PopUpWindow';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import { ISharePointGroup } from '../../models/ConstsModel';
 import Row from '../../shared/components/SingleRow/SingleRow';
+import NumberInputField from '../../shared/components/NumberInputField/NumberInputField';
 
 export default class CandidaturesView extends React.Component<ICandidaturesViewProps> {
-  private disableClearingHouseCategory(selectedCountry: string): boolean {
-    if (selectedCountry === "Denmark") return false;
-    return true;
-  }
-
-  private showArchiveIdArchiveId(userGroups: ISharePointGroup[]): boolean {
-    console.log(userGroups);
-    for (const group of userGroups) {
-      if (group.Title === "Candidature Platform Developers") {
-        return false;
-      }
-    }
-    return true;
-  }
-
   public render(): React.ReactElement<ICandidaturesViewProps> {
-    const disableClearingHouseCategory = this.disableClearingHouseCategory(this.props.form.Country.Title);
-    const showArchiveIdField = this.showArchiveIdArchiveId(this.props.userGroups);
     return (
       <div className="formWrapper">
         {this.props.isSubmitting && (
@@ -154,7 +138,7 @@ export default class CandidaturesView extends React.Component<ICandidaturesViewP
                 name="ClearingHouseCategory"
                 value={this.props.form.ClearingHouseCategory ? String(this.props.form.ClearingHouseCategory) : ""}
                 onChange={this.props.onInputChange}
-                disabled={disableClearingHouseCategory}
+                disabled={this.props.DisableClearingHouseCategory}
                 options={ClearingHouseCategory}
               />
             }
@@ -175,15 +159,15 @@ export default class CandidaturesView extends React.Component<ICandidaturesViewP
           <Row
             label='Votes Received'
             element={
-              <InputField
+              <NumberInputField
                 name={'VotesReceived'}
-                value={this.props.form.VotesReceived}
+                value={this.props.form.VotesReceived ? this.props.form.VotesReceived : NaN}
                 onChange={this.props.onInputChange}
               />
             }
           />
 
-          {showArchiveIdField && (
+          {this.props.ShowArchiveIdField && (
             <Row
               label='ArchiveId'
               element={

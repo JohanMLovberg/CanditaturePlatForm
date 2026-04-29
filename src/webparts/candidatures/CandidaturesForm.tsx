@@ -201,6 +201,20 @@ export default class CandidaturesForm extends React.Component<
     });
   }
 
+  private disableClearingHouseCategory(): boolean {
+    if (this.state.form.Country.Title === "Denmark") return false;
+    return true;
+  }
+  
+  private showArchiveIdField(): boolean {
+    for (const group of this.state.userGroups) {
+      if (group.Title === "Candidature Platform Developers") {
+        return false;
+      }
+    }
+    return true;
+  }
+
   private handleCancel = () => {
     this.setState({
       form: this.logic.createEmptyForm(),
@@ -221,13 +235,14 @@ export default class CandidaturesForm extends React.Component<
         onInputChange={this.handleInputChange}
         onSubmit={this.handleSubmit}
         onCancel={this.handleCancel}
-        userGroups={this.state.userGroups}
         isSubmitting={this.state.isSubmitting}
         closePopUpWindow={this.handleClosePopUpWindow}
         PopUpWindowCloseButton={this.state.PopUpWindowCloseButton}
         apiMessage={this.state.apiMessage}
         countries={this.state.countries}
         elections={this.state.elections}
+        ShowArchiveIdField={this.showArchiveIdField()}
+        DisableClearingHouseCategory={this.disableClearingHouseCategory()}
       />
     )
   }
