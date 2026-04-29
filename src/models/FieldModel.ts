@@ -124,3 +124,10 @@ export interface RowProps {
   error?: string;
   underLabel?: string;
 }
+
+export interface ITextAreaFieldProps {
+  name: string;
+  className?: string;
+  value: string;
+  onChange: (name: string, value: string) => void;
+}

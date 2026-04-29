@@ -62,8 +62,8 @@ export function formatElectionsForm(form: ElectionsFormData): SubmitElectionsFor
 
 export function formatAgreementForm(form: AgreementRegistryFormData): SubmitAgreementRegistryFormData {
   return {
-    AgreementType: form.AgreementType,
-    AgreementStatus: form.AgreementStatus,
+    AgreementType: form.AgreementType.value,
+    AgreementStatus: form.AgreementStatus.value,
     IsCounterProposal: form.IsCounterProposal,
     Candidatures: form.Candidatures,
     Partners: form.Partners,

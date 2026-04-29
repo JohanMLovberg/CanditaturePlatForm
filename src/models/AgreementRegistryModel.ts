@@ -30,8 +30,8 @@ export interface AgreementRegistryFormData {
 }
 
 export interface SubmitAgreementRegistryFormData {
-    AgreementType: IDropDownData,
-    AgreementStatus: IDropDownData,
+    AgreementType: string,
+    AgreementStatus: string,
     IsCounterProposal: boolean,
     Candidatures: IAgreementRegistryCandidature[],
     Partners: IAgreementRegistryPartner[],

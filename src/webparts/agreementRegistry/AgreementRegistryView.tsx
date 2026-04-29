@@ -12,8 +12,8 @@ import SaveButton from '../../shared/components/SaveButton/SaveButton';
 import CancelButton from '../../shared/components/CancelButton/CancelButton';
 
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
-import InputField from '../../shared/components/InputField/InputField';
 import Row from '../../shared/components/SingleRow/SingleRow';
+import TextAreaField from '../../shared/components/TextAreaField/TextAreaField';
 
 export default class AgreementRegistryView extends React.Component<IAgreementRegistryViewProps, any> {
     public render() {
@@ -169,7 +169,7 @@ export default class AgreementRegistryView extends React.Component<IAgreementReg
                     <Row
                         label='Description'
                         element={
-                            <InputField
+                            <TextAreaField
                                 name="Description"
                                 value={this.props.form.Description}
                                 onChange={this.props.onInputChange}
