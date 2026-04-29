@@ -12,7 +12,7 @@ export interface ISharePointGroup {
   Title: string;
   Description: string;
 }
- 
+
 export interface IAgreementRegistryType {
   Id: number | null;
   Title: string;
