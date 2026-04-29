@@ -50,6 +50,7 @@ export interface IDropDownFieldProps {
 export interface IDateFieldProps {
   name: string;
   className?: string;
+  disabled?: boolean;
   value: string;
   onChange: (name: string, value: string) => void;
 }
