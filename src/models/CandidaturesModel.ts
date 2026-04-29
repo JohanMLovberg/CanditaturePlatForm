@@ -27,14 +27,14 @@ export interface CandidaturesFormData {
   CandidatureStatus: string;
   ClearingHouseCategory: string;
   AnnouncementDate: string;
-  VotesReceived: string;
+  VotesReceived: number | undefined;
   ArchiveId: string;
 }
 
 export interface SubmitCandidaturesFormData {
   Election: IElection;
   Country: ICountry;
-  PersonSpecificCandidature: string;
+  PersonSpecificCandidature: boolean;
   Title: string;
   FullName: string;
   CandidatureStatus: string;
@@ -48,7 +48,6 @@ export interface ICandidaturesViewProps {
   form: CandidaturesFormData;
   countries: ICountry[];
   elections: IElection[];
-  userGroups: ISharePointGroup[];
   errors: { [key: string]: string };
   apiMessage?: APIResponse;
   onInputChange: (name: string, value: any) => void;
@@ -57,4 +56,6 @@ export interface ICandidaturesViewProps {
   isSubmitting: boolean;
   closePopUpWindow: () => void;
   PopUpWindowCloseButton: boolean;
+  DisableClearingHouseCategory: boolean;
+  ShowArchiveIdField: boolean;
 }

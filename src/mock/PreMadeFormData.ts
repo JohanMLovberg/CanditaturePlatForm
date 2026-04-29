@@ -17,7 +17,7 @@ export const mockCandidaturesFormData: CandidaturesFormData = {
   CandidatureStatus: "Announced",
   ClearingHouseCategory: "",
   AnnouncementDate: "2026-03-12",
-  VotesReceived: "30",
+  VotesReceived: 30,
   ArchiveId: ""
 };
 
