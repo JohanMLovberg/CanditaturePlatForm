@@ -21,9 +21,6 @@ export default class ElectionsForm extends React.Component<
 			form: this.logic.createEmptyForm(),
 			electionBodies: [],
 			electionPosts: [],
-			electionRegionalGroups: [],
-			electionStatuses: [],
-			electionTypes: [],
 			responsibleLineAuthorities: [],
 			errors: {},
 			isSubmitting: false,
@@ -36,25 +33,16 @@ export default class ElectionsForm extends React.Component<
 		const [
 			electionBodies,
 			electionPosts,
-			electionRegionalGroups,
-			electionStatuses,
-			electionTypes,
 			responsibleLineAuthorities
 		] = await Promise.all([
-			this.logic.getElectionBodies(),
+			this.logic.getBodyList(),
 			this.logic.getElectionPosts(),
-			this.logic.getElectionRegionalGroups(),
-			this.logic.getElectionStatuses(),
-			this.logic.getElectionTypes(),
 			this.logic.getResponsibleLineAuthorities()
 		]);
 
 		this.setState({
 			electionBodies: electionBodies,
 			electionPosts: electionPosts,
-			electionRegionalGroups: electionRegionalGroups,
-			electionStatuses: electionStatuses,
-			electionTypes: electionTypes,
 			responsibleLineAuthorities: responsibleLineAuthorities
 		});
 
@@ -63,7 +51,7 @@ export default class ElectionsForm extends React.Component<
 		this.id = idParam ? parseInt(idParam, 10) : undefined;
 
 		if (this.id !== undefined) {
-			const prefilledData = await this.logic.getElectionFormMock(this.id);
+			const prefilledData = await this.logic.getElectionForm(this.id);
 			this.convertPrefilledData(prefilledData);
 		}
 	}
@@ -75,14 +63,65 @@ export default class ElectionsForm extends React.Component<
 	}
 
 	private handleInputChange = (name: string, value: any) => {
-		const updatedForm = this.logic.updateFields(this.state.form, name, value);
-		const { [name]: removed, ...updatedErrors } = this.state.errors;
-		this.setState({
-			form: updatedForm,
-			errors: updatedErrors
-		}, () => {
-			console.log(this.state.form);
+		if (name === "ResponsibleLineAuthorities") {
+			this.handleResponsibleLineAuthoritiesInput(value);
+		} else if (name === "Post") {
+			this.handlePostInput(value);
+		} else if (name === "Body") {
+			this.handleBodyInput(value);
+		} else {
+			const updatedForm = this.logic.updateFields(this.state.form, name, value);
+			const { [name]: removed, ...updatedErrors } = this.state.errors;
+			this.setState({
+				form: updatedForm,
+				errors: updatedErrors
+			});
+		}
+	}
+
+	private handleResponsibleLineAuthoritiesInput(value: string[]) {
+		var ids = value.map(function (v) {
+			return Number(v);
 		});
+
+		var selected = this.state.responsibleLineAuthorities.filter(function (x) {
+			return ids.indexOf(x.Id) > -1;
+		});
+
+		this.setState(prev => ({
+			form: {
+				...prev.form,
+				ResponsibleLineAuthorities: selected
+			}
+		}));
+	}
+
+	private handleBodyInput(value: Number): void {
+		const bodyValue = Number(value);
+		const BodyArray = this.state.electionBodies.filter((d) => {
+			return d.Id === bodyValue;
+		});
+		const body = BodyArray.length > 0 ? BodyArray[0] : { Id: null, Name: "" };
+		this.setState(prev => ({
+			form: {
+				...prev.form,
+				Body: body
+			}
+		}));
+	}
+
+	private handlePostInput(value: Number): void {
+		const postValue = Number(value);
+		const PostArray = this.state.electionPosts.filter((d) => {
+			return d.Id === postValue;
+		});
+		const post = PostArray.length > 0 ? PostArray[0] : { Id: null, Title: "" };
+		this.setState(prev => ({
+			form: {
+				...prev.form,
+				Post: post
+			}
+		}));
 	}
 
 	private handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -101,7 +140,6 @@ export default class ElectionsForm extends React.Component<
 		if (this.id == undefined) {
 			response = await this.logic.submit(this.state.form);
 		} else {
-			console.log(this.state.form);
 			response = await this.logic.editForm(this.state.form, this.id);
 		}
 
@@ -150,9 +188,6 @@ export default class ElectionsForm extends React.Component<
 				form={this.state.form}
 				electionBodies={this.state.electionBodies}
 				electionPosts={this.state.electionPosts}
-				electionRegionalGroups={this.state.electionRegionalGroups}
-				electionStatuses={this.state.electionStatuses}
-				electionTypes={this.state.electionTypes}
 				responsibleLineAuthorities={this.state.responsibleLineAuthorities}
 				errors={this.state.errors}
 				onSubmit={this.handleSubmit}

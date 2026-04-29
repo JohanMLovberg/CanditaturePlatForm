@@ -1,5 +1,5 @@
 import { WebPartContext } from '@microsoft/sp-webpart-base';
-import { ElectionsFormData } from '../../models/ElectionsModel';
+import { ElectionsFormData, IElectionBody, IElectionPost, IElectionResponsibleLineAuthority } from '../../models/ElectionsModel';
 import { IDropDownData } from '../../models/ConstsModel';
 import electionsBaseApi from '../../services/ElectionsApi';
 import { formatElectionsForm } from '../../utils/formatForm';
@@ -23,8 +23,14 @@ export class ElectionFormLogic {
 
 	public createEmptyForm(): ElectionsFormData {
 		return {
-			Body: "",
-			Post: "",
+			Body: {
+				Id: null,
+				Name: ""
+			},
+			Post: {
+				Id: null,
+				Title: ""
+			},
 			RegionalGroup: "",
 			Status: "",
 			ElectionDate: "",
@@ -70,31 +76,20 @@ export class ElectionFormLogic {
 		return this.representationsApi.editElectionForm(submitForm, id);
 	}
 
-	public async getElectionFormMock(id?: number): Promise<ElectionsFormData> {
+	//TODO change to not call mock
+	public async getElectionForm(id?: number): Promise<ElectionsFormData> {
 		return this.sharePointApi.getElectionFormByIdMock(id);
 	}
-
-	public async getElectionTypes(): Promise<IDropDownData[]> {
-		return this.sharePointApi.getElectionTypesMock();
+	//TODO change to not call mock
+	public async getBodyList(): Promise<IElectionBody[]> {
+		return this.sharePointApi.getBodyListMock();
 	}
-
-	public async getElectionBodies(): Promise<IDropDownData[]> {
-		return this.sharePointApi.getElectionBodiesMock();
+	//TODO change to not call mock
+	public async getElectionPosts(): Promise<IElectionPost[]> {
+		return this.sharePointApi.getPostListMock();
 	}
-
-	public async getElectionPosts(): Promise<IDropDownData[]> {
-		return this.sharePointApi.getElectionPostsMock();
-	}
-
-	public async getElectionRegionalGroups(): Promise<IDropDownData[]> {
-		return this.sharePointApi.getElectionRegionalGroupsMock();
-	}
-
-	public async getElectionStatuses(): Promise<IDropDownData[]> {
-		return this.sharePointApi.getElectionStatusesMock();
-	}
-
-	public async getResponsibleLineAuthorities(): Promise<IDropDownData[]> {
+	//TODO change to not call mock
+	public async getResponsibleLineAuthorities(): Promise<IElectionResponsibleLineAuthority[]> {
 		return this.sharePointApi.getResponsibleLineAuthoritiesMock();
 	}
 }
