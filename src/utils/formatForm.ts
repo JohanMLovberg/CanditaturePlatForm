@@ -43,18 +43,19 @@ export function formattingElectionBodiesForm(form: ElectionBodiesFormData): Subm
   };
 }
 
+//TODO verify what type/data we want to send o the Backend
 export function formatElectionsForm(form: ElectionsFormData): SubmitElectionsFormData {
   return {
-    ElectionBody: form.Body,
-    ElectionPost: form.Post,
-    ElectionRegionalGroup: form.RegionalGroup,
-    ElectionStatus: form.Status,
+    BodyId: form.Body.Id,
+    PostId: form.Post.Id,
+    RegionalGroup: form.RegionalGroup,
+    Status: form.Status,
     ElectionDate: form.ElectionDate,
-    ElectionDateIsTentative: form.TentativeDate,
-    ElectionAnnouncementDeadline: form.AnnouncementDeadline,
-    ElectionSeats: form.Seats,
-    IsTentativeSeats: form.TentativeSeatCount,
-    IsEligibleForVoteSwaps: form.EligibleForVoteSwaps,
+    TentativeDate: form.TentativeDate,
+    AnnouncementDeadline: form.AnnouncementDeadline,
+    Seats: form.Seats,
+    TentativeSeatCount: form.TentativeSeatCount,
+    EligibleForVoteSwaps: form.EligibleForVoteSwaps,
     DanishVotesInElection: form.DanishVotesInElection,
     ResponsibleLineAuthorities: form.ResponsibleLineAuthorities
   };

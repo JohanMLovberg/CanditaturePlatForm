@@ -41,9 +41,16 @@ export default class ElectionsFormView extends React.Component<IElectionViewProp
 						element={
 							<DropDownField
 								name="Body"
-								value={this.props.form.Body}
-								options={this.props.electionBodies}
+								value={this.props.form.Body ? String(this.props.form.Body.Id) : ""}
 								onChange={this.props.onInputChange}
+								options={
+									this.props.electionBodies
+										? this.props.electionBodies.map((Body) => ({
+											value: Body.Id,
+											label: Body.Name
+										}))
+										: []
+								}
 							/>
 						}
 						error={this.props.errors.body}
@@ -53,9 +60,16 @@ export default class ElectionsFormView extends React.Component<IElectionViewProp
 						element={
 							<DropDownField
 								name="Post"
-								value={this.props.form.Post}
-								options={this.props.electionPosts}
+								value={this.props.form.Post ? String(this.props.form.Post.Id) : ""}
 								onChange={this.props.onInputChange}
+								options={
+									this.props.electionPosts
+										? this.props.electionPosts.map((Post) => ({
+											value: Post.Id,
+											label: Post.Title
+										}))
+										: []
+								}
 							/>
 						}
 					/>
@@ -150,7 +164,7 @@ export default class ElectionsFormView extends React.Component<IElectionViewProp
 								name="DanishVotesInElection"
 								value={this.props.form.DanishVotesInElection}
 								onChange={(name, value) => this.props.onInputChange(name, value)}
-								min={0}
+								min={1}
 							/>
 						}
 					/>
@@ -160,10 +174,25 @@ export default class ElectionsFormView extends React.Component<IElectionViewProp
 						element={
 							<MultiSelectDropDownField
 								name="ResponsibleLineAuthorities"
-								options={this.props.responsibleLineAuthorities}
-								placeholder="Select Authorities"
+								placeholder="Please select a value"
 								onChange={this.props.onInputChange}
-								values={this.props.form.ResponsibleLineAuthorities}
+								values={
+									Array.isArray(this.props.form.ResponsibleLineAuthorities)
+										? this.props.form.ResponsibleLineAuthorities.map(function (x) {
+											return String(x.Id);
+										})
+										: []
+								}
+								options={
+									this.props.responsibleLineAuthorities
+										? this.props.responsibleLineAuthorities.map(function (x) {
+											return {
+												value: String(x.Id),
+												label: x.Name
+											};
+										})
+										: []
+								}
 							/>
 						}
 						error={this.props.errors.responsibleLineAuthority}

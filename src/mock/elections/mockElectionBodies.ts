@@ -1,6 +1,7 @@
-import { IDropDownData } from "../../models/ConstsModel";
+import { IElectionBody } from "../../models/ElectionsModel";
 
-export const mockElectionBodies: IDropDownData[] = [
-    { value: "cityCouncil", label: "City Council" },
-    { value: "schoolBoard", label: "School Board" }
+export const mockElectionBodies: IElectionBody[] = [
+	{ Id: 1, Name: "City Council" },
+	{ Id: 2, Name: "School Board" },
+	{ Id: 5, Name: "Arms Trade Treaty" },
 ];
