@@ -72,5 +72,6 @@ export interface IAgreementRegistryViewProps {
     onInputChange: (name: string, value: any) => void;
     closePopUpWindow: () => void;
     PopUpWindowCloseButton: boolean;
+    DisableDateFields: {[key: string]: boolean},
     isSubmitting: boolean;
 }

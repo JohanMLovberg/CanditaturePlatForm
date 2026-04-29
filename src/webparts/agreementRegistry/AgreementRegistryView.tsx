@@ -17,35 +17,7 @@ import { IAgreementRegistryType, IDropDownData } from '../../models/ConstsModel'
 import Row from '../../shared/components/SingleRow/SingleRow';
 
 export default class AgreementRegistryView extends React.Component<IAgreementRegistryViewProps, any> {
-    private getDateFieldStates = function (agreementStatus: IDropDownData) {
-        var fieldStateMap: { [key: string]: { proposed: boolean; accepted: boolean; expired: boolean } } = {};
-
-        fieldStateMap["Draft"] = { proposed: true, accepted: true, expired: true }; // Draft
-        fieldStateMap["Final"] = { proposed: true, accepted: true, expired: true }; // Final
-        fieldStateMap["Proposed"] = { proposed: false, accepted: true, expired: true }; // Proposed
-        fieldStateMap["Accepted"] = { proposed: false, accepted: false, expired: true }; // Accepted 
-        fieldStateMap["Expired"] = { proposed: false, accepted: false, expired: false }; // Expired
-        fieldStateMap["Withdrawn"] = { proposed: false, accepted: false, expired: true }; // Withdrawn
-        fieldStateMap["Ignored"] = { proposed: false, accepted: false, expired: true }; // Ignored
-        fieldStateMap["Declined"] = { proposed: false, accepted: true, expired: true }; // Declined
-
-        var key = agreementStatus && agreementStatus.value ? agreementStatus.value : null;
-        var state = key && fieldStateMap[key] ? fieldStateMap[key] : { proposed: true, accepted: true, expired: true };
-
-        return {
-            proposedFieldDisabled: state.proposed,
-            acceptedFieldDisabled: state.accepted,
-            expiredFieldDisabled: state.expired
-        };
-    };
-
     public render() {
-        const {
-            proposedFieldDisabled,
-            acceptedFieldDisabled,
-            expiredFieldDisabled
-        } = this.getDateFieldStates(this.props.form.AgreementStatus);
-
         return (
             <div className="container">
                 {this.props.isSubmitting && (
@@ -165,7 +137,7 @@ export default class AgreementRegistryView extends React.Component<IAgreementReg
                                 name="Proposed"
                                 value={this.props.form.Proposed}
                                 onChange={this.props.onInputChange}
-                                disabled={proposedFieldDisabled}
+                                disabled={this.props.DisableDateFields.proposedFieldDisabled}
                             />
                         }
                     />
@@ -178,7 +150,7 @@ export default class AgreementRegistryView extends React.Component<IAgreementReg
                                 name="Accepted"
                                 value={this.props.form.Accepted}
                                 onChange={this.props.onInputChange}
-                                disabled={acceptedFieldDisabled}
+                                disabled={this.props.DisableDateFields.acceptedFieldDisabled}
                             />
                         }
                     />
@@ -190,7 +162,7 @@ export default class AgreementRegistryView extends React.Component<IAgreementReg
                                 name="Expired"
                                 value={this.props.form.Expired}
                                 onChange={this.props.onInputChange}
-                                disabled={expiredFieldDisabled}
+                                disabled={this.props.DisableDateFields.expiredFieldDisabled}
                             />
                         }
                     />

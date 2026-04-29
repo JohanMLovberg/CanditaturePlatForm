@@ -244,6 +244,28 @@ export default class AgreementRegistryForm extends React.Component<
         });
     }
 
+    private getDateFieldStates = () => {
+        var fieldStateMap: { [key: string]: { proposed: boolean; accepted: boolean; expired: boolean } } = {};
+
+        fieldStateMap["Draft"] = { proposed: true, accepted: true, expired: true }; // Draft
+        fieldStateMap["Final"] = { proposed: true, accepted: true, expired: true }; // Final
+        fieldStateMap["Proposed"] = { proposed: false, accepted: true, expired: true }; // Proposed
+        fieldStateMap["Accepted"] = { proposed: false, accepted: false, expired: true }; // Accepted 
+        fieldStateMap["Expired"] = { proposed: false, accepted: false, expired: false }; // Expired
+        fieldStateMap["Withdrawn"] = { proposed: false, accepted: false, expired: true }; // Withdrawn
+        fieldStateMap["Ignored"] = { proposed: false, accepted: false, expired: true }; // Ignored
+        fieldStateMap["Declined"] = { proposed: false, accepted: true, expired: true }; // Declined
+
+        var key = this.state.form.AgreementStatus && this.state.form.AgreementStatus.label ? this.state.form.AgreementStatus.label : null;
+        var state = key && fieldStateMap[key] ? fieldStateMap[key] : { proposed: true, accepted: true, expired: true };
+
+        return {
+            proposedFieldDisabled: state.proposed,
+            acceptedFieldDisabled: state.accepted,
+            expiredFieldDisabled: state.expired
+        };
+    }
+
     public render(): JSX.Element {
         return (
             <AgreementRegistryView
@@ -262,6 +284,7 @@ export default class AgreementRegistryForm extends React.Component<
                 isSubmitting={this.state.isSubmitting}
                 closePopUpWindow={this.handleClosePopUpWindow}
                 PopUpWindowCloseButton={this.state.PopUpWindowCloseButton}
+                DisableDateFields={this.getDateFieldStates()}
             />
         );
     }
