@@ -1,0 +1,22 @@
+{
+  "$schema": "https://dev.office.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "f5dbef65-a83c-4672-bac3-0cd35c597392",
+  "alias": "AgreementRegistryWebPart",
+  "componentType": "WebPart",
+
+  "version": "*",
+  "manifestVersion": 2,
+
+  "requiresCustomScript": false,
+
+  "preconfiguredEntries": [{
+    "groupId": "5c03119e-3074-46fd-976b-c60198311f70",
+    "group": { "default": "Other" },
+    "title": { "default": "Agreement Registry" },
+    "description": { "default": "Agreement Registry description" },
+    "officeFabricIconFontName": "Page",
+    "properties": {
+      "description": "Agreement Registry"
+    }
+  }]
+}

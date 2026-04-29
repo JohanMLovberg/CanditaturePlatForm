@@ -19,6 +19,11 @@
       "entry": "./lib/webparts/elections/ElectionsWebPart.js",
       "manifest": "./src/webparts/elections/ElectionsWebPart.manifest.json",
       "outputPath": "./dist/elections-web-part.js"
+    },
+    {
+      "entry": "./lib/webparts/agreementRegistry/AgreementRegistryWebPart.js",
+      "manifest": "./src/webparts/agreementRegistry/AgreementRegistryWebPart.manifest.json",
+      "outputPath": "./dist/agreement-registry-web-part.js"
     }
   ],
   "externals": {}

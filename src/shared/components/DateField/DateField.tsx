@@ -7,6 +7,7 @@ export default function DateField(props: IDateFieldProps): JSX.Element {
       <input
         className={props.className}
         type="date"
+        disabled={props.disabled}
         name={props.name}
         value={props.value || ""}
         onChange={(e) =>
