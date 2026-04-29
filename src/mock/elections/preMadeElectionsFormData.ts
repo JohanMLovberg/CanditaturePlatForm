@@ -1,16 +1,32 @@
 import { ElectionsFormData } from "../../models/ElectionsModel";
 
 export const preMadeElectionsFormDataMock: ElectionsFormData = {
-	ElectionBody: "cityCouncil",
-	ElectionPost: "schoolBoardMember",
-	ElectionRegionalGroup: "east",
-	ElectionStatus: "completed",
+	Body: {
+		Id: 5,
+		Name: "Arms Trade Treaty"
+	},
+	Post: {
+		Id: 3,
+		Title: "Chair"
+	},
+	RegionalGroup: "AG",
+	Status: "Held",
 	ElectionDate: "2026-04-12",
-	ElectionDateIsTentative: true,
-	ElectionAnnouncementDeadline: "2026-04-30",
-	ElectionSeats: 100,
-	IsTentativeSeats: true,
-	IsEligibleForVoteSwaps: true,
+	TentativeDate: true,
+	AnnouncementDeadline: "2026-04-30",
+	Seats: 100,
+	TentativeSeatCount: true,
+	EligibleForVoteSwaps: true,
 	DanishVotesInElection: 50,
-	ResponsibleLineAuthorities: ["5", "6"]
+	ResponsibleLineAuthorities:
+		[
+			{
+				Id: 5,
+				Name: "Finansministeriet"
+			},
+			{
+				Id: 4,
+				Name: "Udenrigsministeriet"
+			}
+		]
 };

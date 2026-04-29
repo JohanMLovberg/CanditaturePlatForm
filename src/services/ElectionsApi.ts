@@ -1,11 +1,7 @@
 import BaseApi from "./BaseApi";
-import { mockElectionTypes } from "../mock/elections/mockElectionTypes";
 import { mockElectionBodies } from "../mock/elections/mockElectionBodies";
 import { mockElectionPosts } from "../mock/elections/mockElectionPosts";
-import { mockElectionRegionalGroups } from "../mock/elections/mockElectionRegionalGroups";
-import { mockElectionStatuses } from "../mock/elections/mockElectionStatuses";
 import { mockResponsibleLineAuthorities } from "../mock/elections/mockResponsibleLineAuthorities";
-import { IDropDownData } from "../models/ConstsModel";
 import { ElectionsFormData, IElectionBody, IElectionPost, IElectionResponsibleLineAuthority, SubmitElectionsFormData } from "../models/ElectionsModel";
 import { preMadeElectionsFormDataMock } from "../mock/elections/preMadeElectionsFormData";
 import { APIResponse } from "../models/ApiModel";
@@ -22,7 +18,7 @@ export default class ElectionsAPI extends BaseApi {
 		};
 
 		return this.handleRequest(() =>
-			this.candidaturePlatformApiClient.post("/_api/web/lists/getByTitle('Contract Database')/items", payload)
+			this.candidaturePlatformApiClient.post("/_api/web/lists/getByTitle('Elections')/items", payload)
 		);
 	}
 
@@ -34,7 +30,7 @@ export default class ElectionsAPI extends BaseApi {
 
 		return this.handleRequest(() =>
 			this.candidaturePlatformApiClient.post(
-				`/_api/web/lists/getByTitle('Elections Database')/items(${id})`,
+				`/_api/web/lists/getByTitle('Elections')/items(${id})`,
 				payload,
 				{
 					headers: {
@@ -55,7 +51,7 @@ export default class ElectionsAPI extends BaseApi {
 				.items.getById(id)
 				.select(
 					"Election_x0020_body/Id",
-					"Election_x0020_body/Title",
+					"Election_x0020_body/Name",
 					"Post/Id",
 					"Post/Title",
 					"Date",
@@ -66,8 +62,10 @@ export default class ElectionsAPI extends BaseApi {
 					"EligibleForVoteSwaps",
 					"DanishVotes",
 					"ResponsibleLineAuthority/Id",
-					"ResponsibleLineAuthority/Title",
+					"ResponsibleLineAuthority/Name",
 				)
+				//TODO
+				//Use Internal name or the column name
 				.expand(
 					"Election_x0020_body",
 					"Post",
@@ -110,12 +108,8 @@ export default class ElectionsAPI extends BaseApi {
     return items;
   }
 
-	public async getElectionBodiesMock(): Promise<IDropDownData[]> {
+	public async getBodyListMock(): Promise<IElectionBody[]> {
 		return mockElectionBodies;
-	}
-
-	public async getElectionTypesMock(): Promise<IDropDownData[]> {
-		return mockElectionTypes;
 	}
 
 	public async getPostList(): Promise<IElectionPost[]> {
@@ -127,16 +121,8 @@ export default class ElectionsAPI extends BaseApi {
     return items;
   }
 
-	public async getElectionPostsMock(): Promise<IDropDownData[]> {
+	public async getPostListMock(): Promise<IElectionPost[]> {
 		return mockElectionPosts;
-	}
-
-	public async getElectionRegionalGroupsMock(): Promise<IDropDownData[]> {
-		return mockElectionRegionalGroups;
-	}
-
-	public async getElectionStatusesMock(): Promise<IDropDownData[]> {
-		return mockElectionStatuses;
 	}
 
 	public async getResponsibleLineAuthorities(): Promise<IElectionResponsibleLineAuthority[]> {
@@ -148,7 +134,7 @@ export default class ElectionsAPI extends BaseApi {
     return items;
   }
 
-	public async getResponsibleLineAuthoritiesMock(): Promise<IDropDownData[]> {
+	public async getResponsibleLineAuthoritiesMock(): Promise<IElectionResponsibleLineAuthority[]> {
 		return mockResponsibleLineAuthorities;
 	}
 }

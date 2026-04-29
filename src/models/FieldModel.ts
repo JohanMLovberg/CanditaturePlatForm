@@ -100,10 +100,10 @@ export interface IMultiSelectDropDownState {
 }
 
 export interface IMultiSelectDropdownProps {
-  options: IDropDownData[];
+  options: { value: number | string; label: string | number }[];
   name: string;
   placeholder: string;
-  onChange: (name: string, values: string | string[] | undefined) => void;
+  onChange: (name: string, values: string[]) => void;
   values: string[];
 }
 
