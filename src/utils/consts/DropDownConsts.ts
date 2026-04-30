@@ -1,7 +1,7 @@
 import { IDropDownData } from "../../models/ConstsModel";
 
 export const CandidatureStatus: IDropDownData[] = [
-	{ value: "Draft", label: "Draft" },
+  { value: "Draft", label: "Draft" },
   { value: "Announced", label: "Announced" },
   { value: "Elected", label: "Elected" },
   { value: "Not elected", label: "Not elected" },
