@@ -1,6 +1,7 @@
+import { mockResponsibleRepresentations } from "../mock/electionBodies/mockResponsibleRepresentations";
 import { mockElectionBodiesFormData } from "../mock/PreMadeFormData";
 import { APIResponse } from "../models/ApiModel";
-import { ElectionBodiesFormData, SubmitElectionBodiesFormData } from "../models/ElectionBodiesModel";
+import { ElectionBodiesFormData, IResponsibleRepresentations, SubmitElectionBodiesFormData } from "../models/ElectionBodiesModel";
 import BaseApi from "./BaseApi";
 import { sp } from 'sp-pnp-js';
 
@@ -55,13 +56,17 @@ export default class ElectionBodiesApi extends BaseApi {
         .getByTitle("ElectionBodies")
         .items.getById(id)
         .select(
-          "Name",
+          "Title",
           "Abbreviation",
           "Information",
-          "ResponsibleRepresentations",
+          "ResponsibleRepresentations/Id",
+          "ResponsibleRepresentations/Name",
           "Depricated",
-          "JournalPlanCode",
+          "JournalPlan",
         )
+        //TODO
+				//Use Internal name or the column name
+        .expand("ResponsibleRepresentations")
         .get();
 
       const representationsForm: ElectionBodiesFormData = {
@@ -85,5 +90,17 @@ export default class ElectionBodiesApi extends BaseApi {
     return mockdata;
   }
 
+  public async getResponsibleRepresentationsList(): Promise<IResponsibleRepresentations[]> {
+    const allLists = await sp.web.lists.select("Name", "Id").get();
+    const responsibleRepresentationsList = allLists.find(l => l.Title === "ResponsibleRepresentations");
+    if (!responsibleRepresentationsList) return [];
+
+    let items: IResponsibleRepresentations[] = await sp.web.lists.getById(responsibleRepresentationsList.Id).items.get();
+    return items;
+  }
+
+  public async getResponsibleRepresentationsListMock(): Promise<IResponsibleRepresentations[]> {
+    return mockResponsibleRepresentations;
+  }
 
 }

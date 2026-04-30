@@ -93,11 +93,13 @@ export class RepresentationsLogic {
       id: u.SharePointId
     }));
   }
-
+  
+  //TODO change to not call mock
   public async getCountry(): Promise<ICountry[]> {
     return this.sharePointApi.getCountryListMock();
   }
 
+  //TODO change to not call mock
   public async getRepresentationsForm(id?: number): Promise<RepresentationsFormData> {
     return this.sharePointApi.getRepresentationsFormByIdMock(id);
   }

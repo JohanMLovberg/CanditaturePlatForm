@@ -11,6 +11,7 @@ import { Kind } from '../../utils/consts/DropDownConsts';
 import './Representations.scss';
 import UserPicker from '../../shared/components/userPicker/userPicker';
 import Row from '../../shared/components/SingleRow/SingleRow';
+import TextAreaField from '../../shared/components/TextAreaField/TextAreaField';
 
 export default class RepresentationsView extends React.Component<IRepresentationsViewProps> {
   public render(): React.ReactElement<IRepresentationsViewProps> {
@@ -93,15 +94,13 @@ export default class RepresentationsView extends React.Component<IRepresentation
           <Row
             label="Description"
             element={
-              <InputField
-                className='BigInputField'
+              <TextAreaField
                 name={'Description'}
                 value={this.props.form.Description}
                 onChange={this.props.onInputChange}
               />
             }
           />
-
           <Row
             label="Mailbox"
             element={

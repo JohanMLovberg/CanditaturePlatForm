@@ -8,6 +8,8 @@ import SaveButton from '../../shared/components/SaveButton/SaveButton';
 import CancelButton from '../../shared/components/CancelButton/CancelButton';
 import './ElectionBodies.scss';
 import Row from '../../shared/components/SingleRow/SingleRow';
+import MultiSelectDropDownField from '../../shared/components/MultiSelectDropDown/MultiSelectDropDownField';
+import TextAreaField from '../../shared/components/TextAreaField/TextAreaField';
 
 export default class ElectionBodiesView extends React.Component<IElectionBodiesViewProps> {
   public render(): React.ReactElement<IElectionBodiesViewProps> {
@@ -60,8 +62,7 @@ export default class ElectionBodiesView extends React.Component<IElectionBodiesV
           <Row
             label={"Information"}
             element={
-              <InputField
-                className='BigInputField'
+              <TextAreaField
                 name={'Information'}
                 value={this.props.form.Information}
                 onChange={this.props.onInputChange}
@@ -71,10 +72,27 @@ export default class ElectionBodiesView extends React.Component<IElectionBodiesV
           <Row
             label={"Responsible Representations"}
             element={
-              <InputField
+              <MultiSelectDropDownField
                 name={'ResponsibleRepresentations'}
-                value={this.props.form.ResponsibleRepresentations}
+                placeholder="Please select a value"
+                values={
+                  Array.isArray(this.props.form.ResponsibleRepresentations)
+                    ? this.props.form.ResponsibleRepresentations.map(function (x) {
+                      return String(x.Id);
+                    })
+                    : []
+                }
                 onChange={this.props.onInputChange}
+                options={
+                  this.props.responsibleRepresentations
+                    ? this.props.responsibleRepresentations.map(function (x) {
+                      return {
+                        value: String(x.Id),
+                        label: x.Name
+                      };
+                    })
+                    : []
+                }
               />
             }
           />

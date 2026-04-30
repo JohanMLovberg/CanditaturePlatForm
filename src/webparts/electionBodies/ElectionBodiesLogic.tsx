@@ -1,6 +1,6 @@
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 import ElectionBodiesApi from "../../services/ElectionBodiesApi";
-import { ElectionBodiesFormData } from "../../models/ElectionBodiesModel";
+import { ElectionBodiesFormData, IResponsibleRepresentations } from "../../models/ElectionBodiesModel";
 import { APIResponse } from "../../models/ApiModel";
 import { formattingElectionBodiesForm } from "../../utils/formatForm";
 
@@ -26,7 +26,7 @@ export class ElectionBodiesLogic {
       Name: "",
       Abbreviation: "",
       Information: "",
-      ResponsibleRepresentations: "",
+      ResponsibleRepresentations: [],
       Depricated: false,
       JournalPlanCode: "",
     };
@@ -60,7 +60,14 @@ export class ElectionBodiesLogic {
     return this.representationsApi.editFormElectionBodies(submitForm, id);
   }
 
+	//TODO change to not call mock
   public async getElectionBodiesForm(id?: number): Promise<ElectionBodiesFormData> {
     return this.sharePointApi.getElectionBodiesFormByIdMock(id);
   }
+
+	//TODO change to not call mock
+	public async getResponsibleRepresentations(): Promise<IResponsibleRepresentations[]> {
+		return this.sharePointApi.getResponsibleRepresentationsListMock();
+	}
+
 }

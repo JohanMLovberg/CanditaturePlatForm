@@ -12,6 +12,7 @@ export interface IElectionBodiesFormState {
   isSubmitting: boolean;
   PopUpWindowCloseButton: boolean;
   apiMessage?: APIResponse;
+  responsibleRepresentations: IResponsibleRepresentations[];
 }
 
 export interface IElectionBodiesViewProps {
@@ -24,13 +25,14 @@ export interface IElectionBodiesViewProps {
   isSubmitting: boolean;
   closePopUpWindow: () => void;
   PopUpWindowCloseButton: boolean;
+  responsibleRepresentations: IResponsibleRepresentations[];
 }
 
 export interface ElectionBodiesFormData {
   Name: string;
   Abbreviation: string;
   Information: string;
-  ResponsibleRepresentations: string;
+  ResponsibleRepresentations: IResponsibleRepresentations[];
   Depricated: boolean;
   JournalPlanCode: string;
 }
@@ -39,7 +41,12 @@ export interface SubmitElectionBodiesFormData {
   Name: string;
   Abbreviation: string;
   Information: string;
-  ResponsibleRepresentations: string;
+  ResponsibleRepresentations: IResponsibleRepresentations[];
   Depricated: boolean;
   JournalPlanCode: string;
+}
+
+export interface IResponsibleRepresentations {
+  Id: number;
+  Name: string;
 }

@@ -9,8 +9,8 @@ export const preMadeElectionsFormDataMock: ElectionsFormData = {
 		Id: 3,
 		Title: "Chair"
 	},
-	RegionalGroup: "east",
-	Status: "completed",
+	RegionalGroup: "AG",
+	Status: "Held",
 	ElectionDate: "2026-04-12",
 	TentativeDate: true,
 	AnnouncementDeadline: "2026-04-30",

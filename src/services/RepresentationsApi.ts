@@ -91,7 +91,6 @@ export default class RepresentationsApi extends BaseApi {
     });
   }
 
-
   public async getCountryList(): Promise<ICountry[]> {
     const allLists = await sp.web.lists.select("Title", "Id").get();
     const countryList = allLists.find(l => l.Title === "Country");
@@ -113,18 +112,23 @@ export default class RepresentationsApi extends BaseApi {
         .getByTitle("Representations")
         .items.getById(id)
         .select(
-          "Name",
+          "Title",
           "Abbreviation",
           "Country/Id",
-          "Country/Title",
+          "Country/Name",
           "Depricated",
-          "Description",
+          "CPDescription",
           "Mailbox",
-          "PrimaryContact",
+          "PrimaryContact/Id",
+          "PrimaryContact/Title",
+          "PrimaryContact/Name",
+          "PrimaryContact/EMail",
           "Kind"
         )
+        //TODO
+				//Use Internal name or the column name
         .expand(
-          "Country",
+          "Country","PrimaryContact"
         )
         .get();
 
