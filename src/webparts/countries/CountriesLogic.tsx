@@ -1,6 +1,6 @@
 import { WebPartContext } from '@microsoft/sp-webpart-base';
 import { CountriesFormData } from '../../models/CountriesModel';
-import { ICountriesResponsibleRepresentation, IDropDownData } from '../../models/ConstsModel';
+import { IResponsibleRepresentation } from '../../models/CountriesModel';
 import CountriesBaseApi from '../../services/CountriesApi';
 import { formatCountriesForm } from '../../utils/formatForm';
 import { APIResponse } from '../../models/ApiModel';
@@ -73,7 +73,7 @@ export class CountriesFormLogic {
 		return this.sharePointApi.getCountriesFormByIdMock(id);
 	}
 
-	public async getResponsibleRepresentations(): Promise<ICountriesResponsibleRepresentation[]> {
+	public async getResponsibleRepresentations(): Promise<IResponsibleRepresentation[]> {
 		return this.sharePointApi.getResponsibleRepresentationsMock();
 	}
 }

@@ -1,7 +1,6 @@
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { APIResponse } from "./ApiModel";
 import { IDropDownData } from "./ConstsModel";
-import { ICountriesResponsibleRepresentation } from "./ConstsModel";
 
 export interface CountriesFormData {
 	Name: string;
@@ -9,16 +8,16 @@ export interface CountriesFormData {
 	MajorArea: IDropDownData;
 	RegionalGroup: IDropDownData;
 	Description: string;
-	ResponsibleRepresentations: ICountriesResponsibleRepresentation[];
+	ResponsibleRepresentations: IResponsibleRepresentation[];
 }
 
 export interface SubmitCountriesFormData {
-    Name: string;
+	Name: string;
 	Abbreviation: string;
 	MajorArea: string;
 	RegionalGroup: string;
 	Description: string;
-	ResponsibleRepresentations: ICountriesResponsibleRepresentation[];
+	ResponsibleRepresentations: IResponsibleRepresentation[];
 }
 
 export interface ICountriesFormProps {
@@ -29,9 +28,9 @@ export interface ICountriesFormProps {
 export interface ICountriesFormState {
 	form: CountriesFormData;
 	apiMessage?: APIResponse;
-	responsibleRepresentations: ICountriesResponsibleRepresentation[];
-    majorAreas: IDropDownData[];
-    regionalGroups: IDropDownData[];
+	responsibleRepresentations: IResponsibleRepresentation[];
+	majorAreas: IDropDownData[];
+	regionalGroups: IDropDownData[];
 	errors: { [key: string]: string };
 	isSubmitting: boolean;
 	PopUpWindowCloseButton: boolean;
@@ -41,7 +40,7 @@ export interface ICountriesViewProps {
 	form: CountriesFormData;
 	apiMessage?: APIResponse;
 	errors: { [key: string]: string };
-	responsibleRepresentations: ICountriesResponsibleRepresentation[];
+	responsibleRepresentations: IResponsibleRepresentation[];
 	majorAreas: IDropDownData[];
 	regionalGroups: IDropDownData[];
 	onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -50,4 +49,9 @@ export interface ICountriesViewProps {
 	closePopUpWindow: () => void;
 	PopUpWindowCloseButton: boolean;
 	isSubmitting: boolean;
+}
+
+export interface IResponsibleRepresentation {
+	Id: number;
+	Name: string;
 }

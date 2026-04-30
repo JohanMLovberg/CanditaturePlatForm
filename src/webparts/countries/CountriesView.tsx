@@ -110,7 +110,7 @@ export default class CountriesFormView extends React.Component<ICountriesViewPro
 								}
 								options={this.props.responsibleRepresentations ? this.props.responsibleRepresentations.map((representation) => ({
 									value: representation.Id ? String(representation.Id) : "",
-									label: representation.Title
+									label: representation.Name
 								})) : []}
 								placeholder='Please select a value...'
 								onChange={this.props.onInputChange}

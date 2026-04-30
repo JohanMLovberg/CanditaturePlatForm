@@ -3,7 +3,7 @@ import { APIResponse } from "../models/ApiModel";
 import { SubmitCountriesFormData, CountriesFormData } from "../models/CountriesModel";
 import { sp } from 'sp-pnp-js';
 import { mockCountriesBodiesFormData } from "../mock/PreMadeFormData";
-import { ICountriesResponsibleRepresentation } from "../models/ConstsModel";
+import { IResponsibleRepresentation } from "../models/CountriesModel";
 import { mockResponsibleRepresentations } from "../mock/countries/mockResponsibleRepresentations";
 
 export default class CountriesAPI extends BaseApi {
@@ -60,16 +60,16 @@ export default class CountriesAPI extends BaseApi {
 		return mockCountriesBodiesFormData;
 	}
 
-	public async getResponsibleRepresentations(): Promise<ICountriesResponsibleRepresentation[]> {
+	public async getResponsibleRepresentations(): Promise<IResponsibleRepresentation[]> {
 		const allLists = await sp.web.lists.select("Title", "Id").get();
 		const ResponsibleRepresentationsList = allLists.find(l => l.Title === "ResponsibleRepresentations");
 		if (!ResponsibleRepresentationsList) return [];
 
-		let items: ICountriesResponsibleRepresentation[] = await sp.web.lists.getById(ResponsibleRepresentationsList.Id).items.get();
+		let items: IResponsibleRepresentation[] = await sp.web.lists.getById(ResponsibleRepresentationsList.Id).items.get();
 		return items;
 	}
 
-	public async getResponsibleRepresentationsMock(): Promise<ICountriesResponsibleRepresentation[]> {
+	public async getResponsibleRepresentationsMock(): Promise<IResponsibleRepresentation[]> {
 		return mockResponsibleRepresentations;
 	}
 }
