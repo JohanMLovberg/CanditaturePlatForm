@@ -1,42 +1,21 @@
 import BaseApi from "./BaseApi";
 import { APIResponse } from "../models/ApiModel";
 import { SubmitCountriesFormData, CountriesFormData } from "../models/CountriesModel";
-import { formatDateTimeForForm } from "../utils/dateUtils";
 import { sp } from 'sp-pnp-js';
-import { YesNoToBoolean } from "../utils/BooleanUtils";
 import { mockCountriesBodiesFormData } from "../mock/PreMadeFormData";
 import { ICountriesResponsibleRepresentation } from "../models/ConstsModel";
 import { mockResponsibleRepresentations } from "../mock/countries/mockResponsibleRepresentations";
 
 export default class CountriesAPI extends BaseApi {
 	public async submitCountriesForm(formData: SubmitCountriesFormData): Promise<APIResponse> {
-		const payload = {
-			__metadata: { type: "SP.Data.ContractdatabaseListItem" },
-			...formData
-		};
-
 		return this.handleRequest(() =>
-			this.candidaturePlatformApiClient.post("/_api/web/lists/getByTitle('Contract Database')/items", payload)
+			this.candidaturePlatformApiClient.post("/countries/", formData)
 		);
 	}
 
 	public async editCountriesForm(formData: SubmitCountriesFormData, id: number): Promise<APIResponse> {
-		const payload = {
-			__metadata: { type: "SP.Data.ContractdatabaseListItem" },
-			...formData
-		};
-
 		return this.handleRequest(() =>
-			this.candidaturePlatformApiClient.post(
-				`/_api/web/lists/getByTitle('Countries Database')/items(${id})`,
-				payload,
-				{
-					headers: {
-						"X-HTTP-Method": "MERGE",
-						"IF-MATCH": "*"
-					}
-				}
-			)
+			this.candidaturePlatformApiClient.put(`/countries/${id}`, formData)
 		);
 	}
 
@@ -48,11 +27,17 @@ export default class CountriesAPI extends BaseApi {
 				.getByTitle("Countries")
 				.items.getById(id)
 				.select(
-
-			)
+					"Name",
+					"Abbreviation",
+					"MajorArea",
+					"RegionalGroup",
+					"Description",
+					"ResponsibleRepresentations/Id",
+					"ResponsibleRepresentations/Title"
+				)
 				.expand(
-
-			)
+					"ResponsibleRepresentations"
+				)
 				.get();
 
 			const countriesForm: CountriesFormData = {

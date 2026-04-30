@@ -83,8 +83,8 @@ export function formatCountriesForm(form: CountriesFormData): SubmitCountriesFor
   return {
       Name: form.Name,
       Abbreviation: form.Abbreviation,
-      MajorArea: form.MajorArea,
-      RegionalGroup: form.RegionalGroup,
+      MajorArea: form.MajorArea.value,
+      RegionalGroup: form.RegionalGroup.value,
       Description: form.Description,
       ResponsibleRepresentations: form.ResponsibleRepresentations
   }

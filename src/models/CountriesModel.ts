@@ -15,8 +15,8 @@ export interface CountriesFormData {
 export interface SubmitCountriesFormData {
     Name: string;
 	Abbreviation: string;
-	MajorArea: IDropDownData;
-	RegionalGroup: IDropDownData;
+	MajorArea: string;
+	RegionalGroup: string;
 	Description: string;
 	ResponsibleRepresentations: ICountriesResponsibleRepresentation[];
 }
@@ -30,6 +30,8 @@ export interface ICountriesFormState {
 	form: CountriesFormData;
 	apiMessage?: APIResponse;
 	responsibleRepresentations: ICountriesResponsibleRepresentation[];
+    majorAreas: IDropDownData[];
+    regionalGroups: IDropDownData[];
 	errors: { [key: string]: string };
 	isSubmitting: boolean;
 	PopUpWindowCloseButton: boolean;

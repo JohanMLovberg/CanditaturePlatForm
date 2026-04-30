@@ -69,7 +69,7 @@ export const mockCountriesBodiesFormData: CountriesFormData = {
     [
       {
       Id: 1,
-      Name: "Canberra"
+      Title: "Canberra"
     }
   ]
 };

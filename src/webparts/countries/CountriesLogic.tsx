@@ -4,6 +4,7 @@ import { ICountriesResponsibleRepresentation, IDropDownData } from '../../models
 import CountriesBaseApi from '../../services/CountriesApi';
 import { formatCountriesForm } from '../../utils/formatForm';
 import { APIResponse } from '../../models/ApiModel';
+import { isEmpty } from '../../utils/consts/emptyString';
 
 export class CountriesFormLogic {
 	private sharePointApi: CountriesBaseApi;
@@ -49,6 +50,11 @@ export class CountriesFormLogic {
 
 	public validate(form: CountriesFormData): { [key: string]: string } {
 		const errors: { [key: string]: string } = {};
+
+		console.log(form.MajorArea)
+		if (!form.Name) errors.Name = "Name is a required field";
+		if (!form.Abbreviation) errors.Abbreviation = "Abbreviation is a required field";
+		if (!form.MajorArea || isEmpty(form.MajorArea.label)) errors.MajorArea = "Major Area is required"
 
 		return errors;
 	}

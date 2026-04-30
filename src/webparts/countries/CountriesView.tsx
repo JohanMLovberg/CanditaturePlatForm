@@ -35,6 +35,7 @@ export default class CountriesFormView extends React.Component<ICountriesViewPro
 
 					<Row
 						label='Name'
+						error={this.props.errors.Name}
 						required
 						element={
 							<InputField
@@ -47,10 +48,11 @@ export default class CountriesFormView extends React.Component<ICountriesViewPro
 
 					<Row
 						label='Abbreviaton'
+						error={this.props.errors.Abbreviation}
 						required
 						element={
 							<InputField
-								name='Name'
+								name='Abbreviation'
 								value={this.props.form.Abbreviation}
 								onChange={this.props.onInputChange}
 							/>
@@ -59,6 +61,7 @@ export default class CountriesFormView extends React.Component<ICountriesViewPro
 
 					<Row
 						label='Major Area'
+						error={this.props.errors.MajorArea}
 						required
 						element={
 							<DropDownField
@@ -86,7 +89,7 @@ export default class CountriesFormView extends React.Component<ICountriesViewPro
 						label='Description'
 						element={
 							<TextAreaField
-								name='Name'
+								name='Description'
 								value={this.props.form.Description}
 								onChange={this.props.onInputChange}
 							/>
@@ -98,11 +101,17 @@ export default class CountriesFormView extends React.Component<ICountriesViewPro
 						element={
 							<MultiSelectDropDownField
 								name='ResponsibleRepresentations'
-								values={this.props.form.ResponsibleRepresentations.map(item => String(item.Id)) || []}
+								values={
+									Array.isArray(this.props.form.ResponsibleRepresentations)
+										? this.props.form.ResponsibleRepresentations.map(function (x) {
+											return String(x.Id);
+										})
+										: []
+								}
 								options={this.props.responsibleRepresentations ? this.props.responsibleRepresentations.map((representation) => ({
-                                    value: representation.Id ? String(representation.Id) : "",
-                                    label: representation.Name
-                                })) : []}
+									value: representation.Id ? String(representation.Id) : "",
+									label: representation.Title
+								})) : []}
 								placeholder='Please select a value...'
 								onChange={this.props.onInputChange}
 							/>
