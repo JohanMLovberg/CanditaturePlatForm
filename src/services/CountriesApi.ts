@@ -46,7 +46,7 @@ export default class CountriesAPI extends BaseApi {
 				MajorArea: item.MajorArea,
 				RegionalGroup: item.RegionalGroup,
 				Description: item.Description,
-				ResponsibleRepresentations: item.ResponsibleRepresentations
+				ResponsibleRepresentations: item.ResponsibleRepresentations || []
 			};
 
 			return countriesForm;
