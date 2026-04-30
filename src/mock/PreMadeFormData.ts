@@ -12,8 +12,6 @@ export const mockCandidaturesFormData: CandidaturesFormData = {
     Title: "Afghanistan"
   },
   PersonSpecificCandidature: true,
-  Title: "This is a test title",
-  FullName: "This is a test full name",
   CandidatureStatus: "Announced",
   ClearingHouseCategory: "",
   AnnouncementDate: "2026-03-12",
@@ -44,7 +42,12 @@ export const mockElectionBodiesFormData: ElectionBodiesFormData = {
   Name: "Johan Løvberg",
   Abbreviation: "string",
   Information: "hello",
-  ResponsibleRepresentations: "This is a very good string",
+  ResponsibleRepresentations: [
+    {
+      Id: 3,
+      Name: "Canberra"
+    }
+  ],
   Depricated: true,
   JournalPlanCode: "12345"
 };

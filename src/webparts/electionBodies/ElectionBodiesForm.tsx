@@ -23,6 +23,8 @@ export default class ElectionBodiesForm extends React.Component<
       errors: {},
       isSubmitting: false,
       PopUpWindowCloseButton: true,
+      responsibleRepresentations: [],
+      apiMessage: undefined
     };
   }
 
@@ -30,6 +32,12 @@ export default class ElectionBodiesForm extends React.Component<
     if (!sessionStorage.getItem("returnUrl")) {
       sessionStorage.setItem("returnUrl", document.referrer);
     }
+
+    const responsibleRepresentations = await this.logic.getResponsibleRepresentations();
+
+    this.setState({
+      responsibleRepresentations: responsibleRepresentations,
+    });
 
     const params = new URLSearchParams(window.location.search);
     const idParam = params.get("itemID");
@@ -92,13 +100,33 @@ export default class ElectionBodiesForm extends React.Component<
   }
 
   private handleInputChange = (name: string, value: any) => {
-    const updatedForm = this.logic.updateField(this.state.form, name, value);
-    const { [name]: removed, ...updatedErrors } = this.state.errors;
-    this.setState({
-      form: updatedForm,
-      errors: updatedErrors
+    if (name === "ResponsibleRepresentations") {
+      this.handleResponsibleRepresentationsInput(value);
+    } else {
+      const updatedForm = this.logic.updateField(this.state.form, name, value);
+      const { [name]: removed, ...updatedErrors } = this.state.errors;
+      this.setState({
+        form: updatedForm,
+        errors: updatedErrors
+      });
+    }
+  }
+
+  private handleResponsibleRepresentationsInput(value: string[]): void {
+    var ids = value.map(function (v) {
+      return Number(v);
     });
 
+    var selected = this.state.responsibleRepresentations.filter(function (x) {
+      return ids.indexOf(x.Id) > -1;
+    });
+
+    this.setState(prev => ({
+      form: {
+        ...prev.form,
+        ResponsibleRepresentations: selected
+      }
+    }));
   }
 
   private convertPrefilledData(data): void {
@@ -137,6 +165,7 @@ export default class ElectionBodiesForm extends React.Component<
         closePopUpWindow={this.handleClosePopUpWindow}
         PopUpWindowCloseButton={this.state.PopUpWindowCloseButton}
         apiMessage={this.state.apiMessage}
+        responsibleRepresentations={this.state.responsibleRepresentations}
       />
     )
   }

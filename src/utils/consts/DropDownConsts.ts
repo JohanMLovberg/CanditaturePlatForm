@@ -16,8 +16,15 @@ export const ClearingHouseCategory: IDropDownData[] = [
 ];
 
 export const Kind: IDropDownData[] = [
-	{ value: "Embassy", label: "Embassy" },
-	{ value: "Consulates", label: "Consulates" },
+  { value: "Embassy", label: "Embassy" },
+  { value: "Embassy and Permanent Mission", label: "Embassy and Permanent Mission" },
+  { value: "Ministry", label: "Ministry" },
+  { value: "NATO Representative Office", label: "NATO Representative Office" },
+  { value: "OECD Delegation", label: "OECD Delegation" },
+  { value: "Permanent Mission to the United Nations", label: "Permanent Mission to the United Nations" },
+  { value: "Permanent Representation to the Council of Europe", label: "Permanent Representation to the Council of Europe" },
+  { value: "Permanent Representation to the European Union", label: "Permanent Representation to the European Union" },
+  { value: "Representative Office", label: "Representative Office" },
 ];
 
 export const AgreementRegistryStatus: IDropDownData[] = [

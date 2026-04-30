@@ -22,8 +22,8 @@ export interface CandidaturesFormData {
   Election: IElection;
   Country: ICountry;
   PersonSpecificCandidature: boolean;
-  Title: string;
-  FullName: string;
+  Title?: string;
+  FullName?: string;
   CandidatureStatus: string;
   ClearingHouseCategory: string;
   AnnouncementDate: string;

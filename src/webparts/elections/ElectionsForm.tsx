@@ -30,6 +30,10 @@ export default class ElectionsForm extends React.Component<
 	}
 
 	public async componentDidMount(): Promise<void> {
+		if (!sessionStorage.getItem("returnUrl")) {
+			sessionStorage.setItem("returnUrl", document.referrer);
+		}
+
 		const [
 			electionBodies,
 			electionPosts,
@@ -79,9 +83,9 @@ export default class ElectionsForm extends React.Component<
 		}
 	}
 
-	private handleResponsibleLineAuthoritiesInput(value: string[]) {
-		var ids = value.map(function (v) {
-			return Number(v);
+	private handleResponsibleLineAuthoritiesInput(values: string[]) {
+		var ids = values.map(function (value) {
+			return Number(value);
 		});
 
 		var selected = this.state.responsibleLineAuthorities.filter(function (x) {
@@ -152,6 +156,17 @@ export default class ElectionsForm extends React.Component<
 					message: response.message
 				},
 			});
+
+			const returnUrl = sessionStorage.getItem("returnUrl");
+			if (!isEmpty(returnUrl)) {
+				this.setState({
+					PopUpWindowCloseButton: false
+				});
+				setTimeout(() => {
+					sessionStorage.removeItem("returnUrl");
+					window.location.href = returnUrl;
+				}, 2000);
+			}
 		} else {
 			this.setState({
 				apiMessage: {
