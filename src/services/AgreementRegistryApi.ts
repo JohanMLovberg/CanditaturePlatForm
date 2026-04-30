@@ -72,7 +72,7 @@ export default class AgreementRegistryBaseAPI extends BaseApi {
                 ProposedBy: item.ProposedBy,
                 Proposed: formatDateTimeForForm(item.Proposed) as string,
                 Accepted: formatDateTimeForForm(item.Accepted) as string,
-                Expired:  formatDateTimeForForm(item.Expired) as string,
+                Expired: formatDateTimeForForm(item.Expired) as string,
                 Description: item.Description,
                 RelatedAgreements: item.RelatedAgreements
             };
@@ -88,16 +88,52 @@ export default class AgreementRegistryBaseAPI extends BaseApi {
         return preMadeMockAgreementRegistryFormData;
     }
 
+    public async getRelatedAgreementsList(): Promise<IAgreementRegistryRelatedAgreement[]> {
+        const allLists = await sp.web.lists.select("Name", "Id").get();
+        const RelatedAgreementsList = allLists.find(l => l.Name === "Related Agreements");
+        if (!RelatedAgreementsList) return [];
+
+        let items: IAgreementRegistryRelatedAgreement[] = await sp.web.lists.getById(RelatedAgreementsList.Id).items.get();
+        return items;
+    }
+
     public async getRelatedAgreementsMock(): Promise<IAgreementRegistryRelatedAgreement[]> {
         return mockAgreementRegistryRelatedAgreement;
+    }
+
+    public async getProposedByList(): Promise<IAgreementRegistryProposedBy[]> {
+        const allLists = await sp.web.lists.select("Name", "Id").get();
+        const ProposedByList = allLists.find(l => l.Name === "Proposed By");
+        if (!ProposedByList) return [];
+
+        let items: IAgreementRegistryProposedBy[] = await sp.web.lists.getById(ProposedByList.Id).items.get();
+        return items;
     }
 
     public async getProposedByMock(): Promise<IAgreementRegistryProposedBy[]> {
         return mockAgreementRegistryProposedBy;
     }
 
+    public async getPartnerList(): Promise<IAgreementRegistryPartner[]> {
+        const allLists = await sp.web.lists.select("Name", "Id").get();
+        const PartnerList = allLists.find(l => l.Name === "Partners");
+        if (!PartnerList) return [];
+
+        let items: IAgreementRegistryPartner[] = await sp.web.lists.getById(PartnerList.Id).items.get();
+        return items;
+    }
+
     public async getPartnerMock(): Promise<IAgreementRegistryPartner[]> {
         return mockAgreementRegistryPartner;
+    }
+
+    public async getCandidatureList(): Promise<IAgreementRegistryCandidature[]> {
+        const allLists = await sp.web.lists.select("Name", "Id").get();
+        const CandidatureList = allLists.find(l => l.Name === "Candidatures");
+        if (!CandidatureList) return [];
+
+        let items: IAgreementRegistryCandidature[] = await sp.web.lists.getById(CandidatureList.Id).items.get();
+        return items;
     }
 
     public async getCandidatureMock(): Promise<IAgreementRegistryCandidature[]> {
