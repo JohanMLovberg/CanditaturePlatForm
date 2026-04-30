@@ -24,6 +24,11 @@
       "entry": "./lib/webparts/agreementRegistry/AgreementRegistryWebPart.js",
       "manifest": "./src/webparts/agreementRegistry/AgreementRegistryWebPart.manifest.json",
       "outputPath": "./dist/agreement-registry-web-part.js"
+    },
+    {
+      "entry": "./lib/webparts/countries/CountriesWebPart.js",
+      "manifest": "./src/webparts/countries/CountriesWebPart.manifest.json",
+      "outputPath": "./dist/countries-web-part.js"
     }
   ],
   "externals": {}

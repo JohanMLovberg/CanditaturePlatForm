@@ -33,6 +33,11 @@ export interface IAgreementRegistryRelatedAgreement {
   Title: string;
 }
 
+export interface ICountriesResponsibleRepresentation {
+  Id: number;
+  Name: string;
+}
+
 export type IDropDownData = {
   value: string;
   label: string;

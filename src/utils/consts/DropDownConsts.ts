@@ -43,3 +43,20 @@ export const AgreementRegistryAgreementType: IDropDownData[] = [
   { value: "Reciprocal Support", label: "Reciprocal Support" },
   { value: "Unilateral Support", label: "Unilateral Support" }
 ];
+
+export const CountriesMajorArea: IDropDownData[] = [
+  { value: "Africa", label: "Africa" },
+  { value: "Asia", label: "Asia" },
+  { value: "Europe", label: "Europe" },
+  { value: "Latin America and the Caribbean", label: "Latin America and the Caribbean" },
+  { value: "Northern America", label: "Northern America" },
+  { value: "Oceania", label: "Oceania" }
+];
+
+export const CountriesRegionalGroup: IDropDownData[] = [
+  { value: "AG", label: "AG" },
+  { value: "APG", label: "APG" },
+  { value: "EEG", label: "EEG" },
+  { value: "GRULAC", label: "GRULAC" },
+  { value: "WEOG", label: "WEOG" }
+];
