@@ -13,6 +13,26 @@ export interface ISharePointGroup {
   Description: string;
 }
 
+export interface IAgreementRegistryCandidature {
+  Id: number | null;
+  Title: string;
+}
+
+export interface IAgreementRegistryPartner {
+  Id: number | null;
+  Title: string;
+}
+
+export interface IAgreementRegistryProposedBy {
+  Id: number | null;
+  Title: string;
+}
+
+export interface IAgreementRegistryRelatedAgreement {
+  Id: number | null;
+  Title: string;
+}
+
 export type IDropDownData = {
   value: string;
   label: string;

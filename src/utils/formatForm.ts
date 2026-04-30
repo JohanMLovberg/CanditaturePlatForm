@@ -2,6 +2,7 @@ import { CandidaturesFormData, SubmitCandidaturesFormData } from "../models/Cand
 import { ElectionBodiesFormData, SubmitElectionBodiesFormData } from "../models/ElectionBodiesModel";
 import { ElectionsFormData, SubmitElectionsFormData } from "../models/ElectionsModel";
 import { RepresentationsFormData, SubmitRepresentationsFormData } from "../models/RepresentationsModel";
+import { AgreementRegistryFormData, SubmitAgreementRegistryFormData } from "../models/AgreementRegistryModel";
 import { formatDateTimeForForm } from "./dateUtils";
 
 export function formattingCandidaturesForm(form: CandidaturesFormData): SubmitCandidaturesFormData {
@@ -59,4 +60,20 @@ export function formatElectionsForm(form: ElectionsFormData): SubmitElectionsFor
     DanishVotesInElection: form.DanishVotesInElection,
     ResponsibleLineAuthorities: form.ResponsibleLineAuthorities
   };
+}
+
+export function formatAgreementForm(form: AgreementRegistryFormData): SubmitAgreementRegistryFormData {
+  return {
+    AgreementType: form.AgreementType.value,
+    AgreementStatus: form.AgreementStatus.value,
+    IsCounterProposal: form.IsCounterProposal,
+    Candidatures: form.Candidatures,
+    Partners: form.Partners,
+    ProposedBy: form.ProposedBy,
+    Proposed: form.Proposed,
+    Accepted: form.Accepted,
+    Expired: form.Expired,
+    Description: form.Description,
+    RelatedAgreements: form.RelatedAgreements
+  }
 }

@@ -51,6 +51,7 @@ export interface IDropDownFieldProps {
 export interface IDateFieldProps {
   name: string;
   className?: string;
+  disabled?: boolean;
   value: string;
   onChange: (name: string, value: string) => void;
 }
@@ -123,4 +124,11 @@ export interface RowProps {
   element: React.ReactNode;
   error?: string;
   underLabel?: string;
+}
+
+export interface ITextAreaFieldProps {
+  name: string;
+  className?: string;
+  value: string;
+  onChange: (name: string, value: string) => void;
 }
