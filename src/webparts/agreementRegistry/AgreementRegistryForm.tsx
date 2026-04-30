@@ -37,6 +37,10 @@ export default class AgreementRegistryForm extends React.Component<
     }
 
     public async componentDidMount(): Promise<void> {
+        if (!sessionStorage.getItem("returnUrl")) {
+			sessionStorage.setItem("returnUrl", document.referrer);
+		}
+
         const [
             relatedAgreements,
             proposedBy,
