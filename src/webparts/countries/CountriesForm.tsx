@@ -55,10 +55,6 @@ export default class Countries extends React.Component<
 		}
 	}
 
-	public componentDidUpdate(prevProps: Readonly<ICountriesFormProps>, prevState: Readonly<ICountriesFormState>, prevContext: any): void {
-		console.log(this.state.form);
-	}
-
 	private convertPrefilledData(data: CountriesFormData): void {
 		this.setState({
 			form: data
