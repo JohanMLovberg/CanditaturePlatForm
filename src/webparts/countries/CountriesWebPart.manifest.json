@@ -1,0 +1,20 @@
+{
+  "$schema": "https://dev.office.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "b868d852-25c3-447d-89d0-3a92c306030d",
+  "alias": "ElectionsWebPart",
+  "componentType": "WebPart",
+  "version": "*",
+  "manifestVersion": 2,
+  "requiresCustomScript": false,
+
+  "preconfiguredEntries": [{
+    "groupId": "8322d422-99b8-406d-933d-22ee375c6bf7",
+    "group": { "default": "Other" },
+    "title": { "default": "Countries" },
+    "description": { "default": "countries form" },
+    "officeFabricIconFontName": "Page",
+    "properties": {
+      "description": "Countries"
+    }
+  }]
+}
